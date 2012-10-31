@@ -34,6 +34,7 @@ class Module
                 'Todo\Model\TodoTable' => function($sm) {
                     $tableGateway = $sm->get('TodoTableGateway');
                     $table = new TodoTable($tableGateway);
+                    return $table;
                 },
                 'TodoTableGateway' => function($sm) {
                     $dbAdapter = $sm->get('Zend\Db\Adapter\Adapter');

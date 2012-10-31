@@ -1,0 +1,30 @@
+<?php
+
+$title = 'My Todos';
+$this->headTitle($title);
+?>
+
+<h1><?php echo $this->escapeHtml($title);?></h1>
+<p>
+    <a href="<?php echo $this->url('todo', array('action'=>'add'));?>">Add new Task</a>
+</p>
+
+<table class="table">
+<tr>
+    <th>Description</th>
+    <th>Status</th>
+    <th>&nbsp;</th>
+</tr>
+<?php foreach($todos as $todo) : ?>
+<tr>
+    <td><?php echo $this->escapeHtml($todo->description);?></td>
+    <td><?php echo $this->escapeHtml($todo->status); ?></td>
+    <td>
+        <a href="<?php echo $this->url(
+             'todo', array('action' => 'edit', 'id' => $todo->id)); ?>"> Edit </a>
+         <a href="<?php echo $this->url(
+             'todo', array('action' => 'delete', 'id' => $todo->id)); ?>"> Delete</a>
+    </td>
+</tr>
+<?php endforeach ?>
+</table>

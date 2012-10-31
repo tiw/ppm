@@ -74,4 +74,10 @@ class TodoControllerTest extends PHPUnit_Framework_TestCase
         $this->assertInstanceOf('Zend\View\Model\ViewModel', $result);
     }
 
+
+    public function testGetTodoTableReturnAnInstanceOfTodoTable()
+    {
+        $this->assertInstanceOf('Todo\Model\TodoTable', $this->controller->getTodoTable());
+    }
+
 }
