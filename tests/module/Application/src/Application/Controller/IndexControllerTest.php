@@ -4,7 +4,6 @@ use Zend\Http\Request;
 use Zend\Http\Response;
 use Zend\Mvc\MvcEvent;
 use Zend\Mvc\Router\RouteMatch;
-use PHPUnit_Framework_TestCase;
 
 class IndexControllerTest extends PHPUnit_Framework_TestCase
 {
