@@ -1,6 +1,11 @@
 <?php
 namespace Todo;
 
+use Todo\Model\Todo;
+use Todo\Model\TodoTable;
+use Zend\Db\ResultSet\ResultSet;
+use Zend\Db\TableGateway\TableGateway;
+
 class Module
 {
     public function getAutoloaderConfig()
@@ -20,5 +25,24 @@ class Module
     public function getConfig()
     {
         return include __DIR__ . '/config/module.config.php';
+    }
+
+    public function getServiceConfig()
+    {
+        return array(
+            'factories' => array(
+                'Todo\Model\TodoTable' => function($sm) {
+                    $tableGateway = $sm->get('TodoTableGateway');
+                    $table = new TodoTable($tableGateway);
+                },
+                'TodoTableGateway' => function($sm) {
+                    $dbAdapter = $sm->get('Zend\Db\Adapter\Adapter');
+                    $resultSetPrototype = new ResultSet();
+                    $resultSetPrototype->setArrayObjectPrototype(new Todo());
+                    return new TableGateway('todo', $dbAdapter, null, $resultSetPrototype);
+                }
+
+            ),
+        );
     }
 }
