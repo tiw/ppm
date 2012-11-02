@@ -3,6 +3,9 @@ return array(
     'modules' => array(
         'Application',
         'Todo',
+        'ZfcBase',
+        'ZfcUser',
+        'BjyAuthorize',
     ),
     'module_listener_options' => array(
         'config_glob_paths'    => array(

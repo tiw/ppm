@@ -46,4 +46,32 @@ class Module
             ),
         );
     }
+
+
+    /*
+    protected $sm;
+    protected $app;
+    public function onBootstrap($e)
+    {
+        $this->app = $e->getApplication();
+        $this->sm = $this->app->getServiceManager();
+        $eventManager = $this->app->getEventManager();
+        $eventManager->attach(\Zend\Mvc\MvcEvent::EVENT_DISPATCH, array($this, 'preDispatch'), 100);
+    }
+
+    public function preDispatch()
+    {
+        $auth = $this->sm->get('zfcuser_auth_service');
+
+        // check the module controller and action name
+        // the white list is /user/login
+        
+        $req = $this->app->getRequest();
+        $params = $req->getQuery()->toArray();
+        var_dump($params);die;
+        if (!$auth->hasIdentity()) {
+            header("Location: http://zf2.my/user/login");
+        }
+    }
+     */
 }
