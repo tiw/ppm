@@ -38,7 +38,7 @@ return array(
                 array('route' => 'zfcuser/login', 'roles' => array('guest')),
                 array('route' => 'zfcuser/register', 'roles' => array('guest')),
                 //// Below is the default index action used by the [ZendSkeletonApplication](https://github.com/zendframework/ZendSkeletonApplication)
-                //array('route' => 'home', 'roles' => array('guest', 'user')),
+                array('route' => 'home', 'roles' => array('guest', 'user')),
                 array('route' => 'todo', 'roles' => array('user')),
             ),
         ),
