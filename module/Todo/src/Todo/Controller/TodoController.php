@@ -29,7 +29,12 @@ class TodoController extends AbstractActionController
 
     public function addAction()
     {
-        $form = new TodoForm();
+        //$sm = $this->getServiceLocator();
+        //$auth = $sm->get('zfcuser_auth_service');
+        //$userId = $auth->getIdentity()->getId();
+        $form = $this->getServiceLocator()->get('TodoForm');
+        $form->init();
+
         $form->get('submit')->setValue('Add');
 
         $request = $this->getRequest();

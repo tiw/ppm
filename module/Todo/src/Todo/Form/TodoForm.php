@@ -3,12 +3,28 @@
 namespace Todo\Form;
 
 use Zend\Form\Form;
+use User\Model\Mapper\User as UserMapper;
 
 class TodoForm extends Form
 {
+
+    private $_userMapper;
+
+    public function setUserMapper($userMapper)
+    {
+        $this->_userMapper = $userMapper;
+    }
+
+    public function getUserMapper()
+    {
+        return $this->_userMapper;
+    }
     public function __construct($name = null)
     {
         parent::__construct('todo');
+    }
+    public function init()
+    {
         $this->setAttribute('method', 'post');
         $this->add(array(
             'name' => 'id',
@@ -42,5 +58,13 @@ class TodoForm extends Form
                 'id' => 'submitbutton',
             ),
         ));
+
+        $allUsers = $this->getUserMapper()->fetchAll();
+        echo count($allUsers);
+        foreach($allUsers as $user) {
+            var_dump($user);
+            echo $user->getId();
+        }
+        die;
     }
 }

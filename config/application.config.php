@@ -1,11 +1,12 @@
 <?php
 return array(
     'modules' => array(
-        'Application',
-        'Todo',
         'ZfcBase',
         'ZfcUser',
         'BjyAuthorize',
+        'Application',
+        'Todo',
+        'User',
     ),
     'module_listener_options' => array(
         'config_glob_paths'    => array(
