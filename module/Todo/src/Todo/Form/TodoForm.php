@@ -50,6 +50,20 @@ class TodoForm extends Form
                 'label' => 'Status',
             ),
         ));
+
+
+        
+        $allUsers = $this->getUserMapper()->fetchAll();
+        $options = array();
+        foreach($allUsers as $user) {
+            $options[$user->getId()] = $user->getUsername();
+        }
+
+        $assignTo = new \Zend\Form\Element\Select('assignto');
+        $assignTo->setLabel('Assign To');
+        $assignTo->setValueOptions($options);
+        $this->add($assignTo);
+
         $this->add(array(
             'name' => 'submit',
             'attributes' => array(
@@ -58,13 +72,5 @@ class TodoForm extends Form
                 'id' => 'submitbutton',
             ),
         ));
-
-        $allUsers = $this->getUserMapper()->fetchAll();
-        echo count($allUsers);
-        foreach($allUsers as $user) {
-            var_dump($user);
-            echo $user->getId();
-        }
-        die;
     }
 }

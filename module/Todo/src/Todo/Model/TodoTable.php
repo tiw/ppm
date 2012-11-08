@@ -35,6 +35,7 @@ class TodoTable
         $data = array(
             'description' => $todo->description,
             'status' => $todo->status,
+            'assignto' => $todo->assignTo,
         );
 
         $id = (int) $todo->id;

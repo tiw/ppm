@@ -18,7 +18,7 @@ class Todo implements InputFilterAwareInterface
         $this->id     = (isset($data['id'])) ? $data['id'] : null;
         $this->description = (isset($data['description'])) ? $data['description'] : null;
         $this->status = (isset($data['status'])) ? $data['status'] : null;
-        $this->assignTo = (isset($data['assignTo'])) ? $data['assignTo'] : null;
+        $this->assignTo = (isset($data['assignto'])) ? $data['assignto'] : null;
     }
 
     public function getArrayCopy()

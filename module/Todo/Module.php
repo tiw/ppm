@@ -4,6 +4,7 @@ namespace Todo;
 use Todo\Model\Todo;
 use Todo\Model\TodoTable;
 use User\Model\Mapper\User as UserMapper;
+use Zfcuser\Mapper\UserHydrator;
 use Todo\Form\TodoForm;
 use Zend\Db\ResultSet\ResultSet;
 use Zend\Db\TableGateway\TableGateway;
@@ -48,7 +49,7 @@ class Module
                     $mapper = new UserMapper();
                     $mapper->setDbAdapter($sm->get('Zend\Db\Adapter\Adapter'));
                     $mapper->setEntityPrototype(new \User\Model\User());
-                    //$mapper->setHydrator(new Mapper\UserHydrator());
+                    $mapper->setHydrator(new UserHydrator());
                     return $mapper;
                 },
                 'TodoForm' => function($sm) {
