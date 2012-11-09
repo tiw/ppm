@@ -3,6 +3,7 @@
 namespace Todo\Form;
 
 use Zend\Form\Form;
+use Zend\Form\Element\Select;
 
 class TodoForm extends Form
 {
@@ -42,16 +43,18 @@ class TodoForm extends Form
                 'label' => 'Description',
             ),
         ));
-        $this->add(array(
-            'name' => 'status',
-            'attributes' => array(
-                'type' => 'text'
-            ),
-            'options' => array(
-                'label' => 'Status',
-            ),
-        ));
 
+        $statusOptions = array(
+            'new' => '新任务',
+            'processing' => '进行中',
+            'finished' => '完成',
+            'closed' => '关闭',
+        );
+
+        $status = new Select('status');
+        $status->setLabel('状态');
+        $status->setValueOptions($statusOptions);
+        $this->add($status);
 
 
         $allUsers = $this->getUserMapper()->fetchAll();
@@ -60,7 +63,7 @@ class TodoForm extends Form
             $options[$user->getId()] = $user->getUsername();
         }
 
-        $assignTo = new \Zend\Form\Element\Select('assignto');
+        $assignTo = new Select('assignto');
         $assignTo->setLabel('Assign To');
         $assignTo->setValueOptions($options);
         $this->add($assignTo);
