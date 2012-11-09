@@ -1,4 +1,5 @@
 <?php
+
 namespace Todo;
 
 use Todo\Model\Todo;
@@ -6,11 +7,13 @@ use Todo\Model\TodoTable;
 use User\Model\Mapper\User as UserMapper;
 use Zfcuser\Mapper\UserHydrator;
 use Todo\Form\TodoForm;
+use Todo\Model\TodoHydrator;
 use Zend\Db\ResultSet\ResultSet;
 use Zend\Db\TableGateway\TableGateway;
 
 class Module
 {
+
     public function getAutoloaderConfig()
     {
         return array(
@@ -55,37 +58,39 @@ class Module
                 'TodoForm' => function($sm) {
                     $form = new TodoForm();
                     $form->setUserMapper($sm->get('UserMapper'));
+                    $form->setHydrator(new TodoHydrator());
+                    $form->bind(new Todo());
+                    $form->init();
                     return $form;
                 },
             ),
         );
     }
 
-
     /*
-    protected $sm;
-    protected $app;
-    public function onBootstrap($e)
-    {
-        $this->app = $e->getApplication();
-        $this->sm = $this->app->getServiceManager();
-        $eventManager = $this->app->getEventManager();
-        $eventManager->attach(\Zend\Mvc\MvcEvent::EVENT_DISPATCH, array($this, 'preDispatch'), 100);
-    }
+      protected $sm;
+      protected $app;
+      public function onBootstrap($e)
+      {
+      $this->app = $e->getApplication();
+      $this->sm = $this->app->getServiceManager();
+      $eventManager = $this->app->getEventManager();
+      $eventManager->attach(\Zend\Mvc\MvcEvent::EVENT_DISPATCH, array($this, 'preDispatch'), 100);
+      }
 
-    public function preDispatch()
-    {
-        $auth = $this->sm->get('zfcuser_auth_service');
+      public function preDispatch()
+      {
+      $auth = $this->sm->get('zfcuser_auth_service');
 
-        // check the module controller and action name
-        // the white list is /user/login
-        
-        $req = $this->app->getRequest();
-        $params = $req->getQuery()->toArray();
-        var_dump($params);die;
-        if (!$auth->hasIdentity()) {
-            header("Location: http://zf2.my/user/login");
-        }
-    }
+      // check the module controller and action name
+      // the white list is /user/login
+
+      $req = $this->app->getRequest();
+      $params = $req->getQuery()->toArray();
+      var_dump($params);die;
+      if (!$auth->hasIdentity()) {
+      header("Location: http://zf2.my/user/login");
+      }
+      }
      */
 }

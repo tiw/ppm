@@ -15,8 +15,13 @@ class TodoTable
 
     public function fetchAll()
     {
-        $resultSet = $this->tableGateway->select();
-        return $resultSet;
+	$select = $this->tableGateway->getSql()->select();
+	$select->join(array('u' => 'user'), 'assignto = u.user_id');
+	$statement = $this->tableGateway->getSql()->prepareStatementForSqlObject($select);
+	return $results = $statement->execute();
+
+        //$resultSet = $this->tableGateway->selectWith($select);
+	//return $resultSet;
     }
 
     public function getTodo($id)

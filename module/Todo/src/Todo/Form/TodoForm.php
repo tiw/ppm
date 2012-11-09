@@ -3,7 +3,6 @@
 namespace Todo\Form;
 
 use Zend\Form\Form;
-use User\Model\Mapper\User as UserMapper;
 
 class TodoForm extends Form
 {
@@ -19,10 +18,12 @@ class TodoForm extends Form
     {
         return $this->_userMapper;
     }
+
     public function __construct($name = null)
     {
         parent::__construct('todo');
     }
+
     public function init()
     {
         $this->setAttribute('method', 'post');
@@ -52,10 +53,10 @@ class TodoForm extends Form
         ));
 
 
-        
+
         $allUsers = $this->getUserMapper()->fetchAll();
         $options = array();
-        foreach($allUsers as $user) {
+        foreach ($allUsers as $user) {
             $options[$user->getId()] = $user->getUsername();
         }
 
@@ -73,4 +74,5 @@ class TodoForm extends Form
             ),
         ));
     }
+
 }

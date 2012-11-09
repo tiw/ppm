@@ -3,8 +3,6 @@ namespace Todo\Controller;
 
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
-
-use Todo\Form\TodoForm;
 use Todo\Model\Todo;
 
 class TodoController extends AbstractActionController
@@ -20,6 +18,7 @@ class TodoController extends AbstractActionController
         }
         return $this->todoTable;
     }
+
     public function indexAction()
     {
         return new ViewModel(array(
@@ -33,18 +32,17 @@ class TodoController extends AbstractActionController
         //$auth = $sm->get('zfcuser_auth_service');
         //$userId = $auth->getIdentity()->getId();
         $form = $this->getServiceLocator()->get('TodoForm');
-        $form->init();
-
         $form->get('submit')->setValue('Add');
 
         $request = $this->getRequest();
         if ($request->isPost()) {
             $todo = new Todo();
             $form->setInputFilter($todo->getInputFilter());
+
             $form->setData($request->getPost());
 
             if ($form->isValid()) {
-                $todo->exchangeArray($form->getData());
+                $todo = $form->getData();
                 $this->getTodoTable()->saveTodo($todo);
                 return $this->redirect()->toRoute('todo');
             }
@@ -62,7 +60,7 @@ class TodoController extends AbstractActionController
         }
         $todo = $this->getTodoTable()->getTodo($id);
 
-        $form = new TodoForm();
+	    $form = $this->getServiceLocator()->get('TodoForm');
         $form->bind($todo);
         $form->get('submit')->setAttribute('value', Edit);
 
