@@ -32,7 +32,8 @@ class TodoController extends AbstractActionController
         //$auth = $sm->get('zfcuser_auth_service');
         //$userId = $auth->getIdentity()->getId();
         $form = $this->getServiceLocator()->get('TodoForm');
-        $form->get('submit')->setValue('Add');
+        $translator = $this->getServiceLocator()->get('translator');
+        $form->get('submit')->setValue($translator->translate('Add', 'todo'));
 
         $request = $this->getRequest();
         if ($request->isPost()) {

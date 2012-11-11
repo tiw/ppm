@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Todo Module\n"
-"POT-Creation-Date: 2012-11-11 10:18+0800\n"
-"PO-Revision-Date: 2012-11-11 10:20+0800\n"
+"POT-Creation-Date: 2012-11-11 10:35+0800\n"
+"PO-Revision-Date: 2012-11-11 10:36+0800\n"
 "Last-Translator: Ting Wang <ting.wang@anuge.com>\n"
 "Language-Team: Anuge <info@anuge.com>\n"
 "Language: 中文\n"
@@ -13,6 +13,15 @@ msgstr ""
 "X-Poedit-KeywordsList: translate\n"
 "X-Poedit-Basepath: .\n"
 "X-Poedit-SearchPath-0: ..\n"
+
+#: ../src/Todo/Controller/TodoController.php:36
+msgid "Add"
+msgstr "添加"
+
+#: ../src/Todo/Controller/TodoController.php:67
+#: ../view/todo/todo/index.phtml:26
+msgid "Edit"
+msgstr "编辑"
 
 #: ../src/Todo/Form/TodoForm.php:56
 msgid "task_new"
@@ -29,6 +38,14 @@ msgstr "结束"
 #: ../src/Todo/Form/TodoForm.php:59
 msgid "task_closed"
 msgstr "关闭"
+
+#: ../view/todo/todo/add.phtml:4
+msgid "Add new todo"
+msgstr "添加任务"
+
+#: ../view/todo/todo/edit.phtml:6
+msgid "Edit todo"
+msgstr "编辑TDO"
 
 #: ../view/todo/todo/index.phtml:3
 msgid "My Todos"
@@ -49,10 +66,6 @@ msgstr "状态"
 #: ../view/todo/todo/index.phtml:16
 msgid "Assign To"
 msgstr "分配给"
-
-#: ../view/todo/todo/index.phtml:26
-msgid "Edit"
-msgstr "编辑"
 
 #: ../view/todo/todo/index.phtml:28
 msgid "Delete"

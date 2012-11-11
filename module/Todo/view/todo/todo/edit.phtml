@@ -3,7 +3,7 @@ $this->plugin('formRow')->setTranslator($this->plugin('translate')->getTranslato
 $this->plugin('formRow')->setTranslatorTextDomain('todo');
 //var_dump($translator);
 //$this->plugin('translate')->setTranslatorTextDomain('todo');
-$title = 'Edit todo';
+$title = $this->translate('Edit todo');
 $this->headTitle($title);
 
 ?>

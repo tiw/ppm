@@ -1,5 +1,7 @@
 <?php
-$title = 'Add new todo';
+$this->plugin('formRow')->setTranslator($this->plugin('translate')->getTranslator());
+$this->plugin('formRow')->setTranslatorTextDomain('todo');
+$title = $this->translate('Add new todo', 'todo');
 $this->headTitle($title);
 ?>
 
