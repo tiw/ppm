@@ -9,7 +9,6 @@ class TodoHydrator extends ObjectProperty
 
     public function extract($object)
     {
-
         $data = parent::extract($object);
         return $this->mapField('assignTo', 'assignto', $data);
     }

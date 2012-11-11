@@ -52,6 +52,16 @@ class TodoForm extends Form
             ),
         ));
 
+        $priorities = array(
+            '1' => 'high',
+            '2' => 'normal',
+            '3' => 'low',
+        );
+        $priority = new Select('priority');
+        $priority->setLabel('Priority');
+        $priority->setValueOptions($priorities);
+        $this->add($priority);
+
         $statusOptions = array(
             'new' => $this->_translator->translate('task_new', 'todo'),
             'processing' => $this->_translator->translate('task_processing', 'todo'),

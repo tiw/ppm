@@ -41,6 +41,7 @@ class TodoTable
             'description' => $todo->description,
             'status' => $todo->status,
             'assignto' => $todo->assignTo,
+            'priority' => $todo->priority,
         );
 
         $id = (int) $todo->id;

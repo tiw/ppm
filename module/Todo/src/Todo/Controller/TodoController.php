@@ -60,7 +60,6 @@ class TodoController extends AbstractActionController
             ));
         }
         $todo = $this->getTodoTable()->getTodo($id);
-
 	    $form = $this->getServiceLocator()->get('TodoForm');
         $translator = $this->getServiceLocator()->get('translator');
         $form->bind($todo);

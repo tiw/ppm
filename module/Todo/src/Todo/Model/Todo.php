@@ -12,6 +12,7 @@ class Todo implements InputFilterAwareInterface
     public $description;
     public $status;
     public $assignTo;
+    public $priority;
 
     public function exchangeArray($data)
     {
@@ -19,6 +20,7 @@ class Todo implements InputFilterAwareInterface
         $this->description = (isset($data['description'])) ? $data['description'] : null;
         $this->status = (isset($data['status'])) ? $data['status'] : null;
         $this->assignTo = (isset($data['assignto'])) ? $data['assignto'] : null;
+        $this->priority = (isset($data['priority'])) ? $data['priority'] : null;
     }
 
     public function getArrayCopy()
