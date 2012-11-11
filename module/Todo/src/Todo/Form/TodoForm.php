@@ -10,6 +10,14 @@ class TodoForm extends Form
 
     private $_userMapper;
 
+    private $_translator;
+
+    public function setTranslator($translator)
+    {
+        $this->_translator = $translator;
+        return $this;
+    }
+
     public function setUserMapper($userMapper)
     {
         $this->_userMapper = $userMapper;
@@ -45,14 +53,14 @@ class TodoForm extends Form
         ));
 
         $statusOptions = array(
-            'new' => '新任务',
-            'processing' => '进行中',
-            'finished' => '完成',
-            'closed' => '关闭',
+            'new' => $this->_translator->translate('task_new', 'todo'),
+            'processing' => $this->_translator->translate('task_processing', 'todo'),
+            'finished' => $this->_translator->translate('task_finished', 'todo'),
+            'closed' => $this->_translator->translate('task_closed', 'todo'),
         );
 
         $status = new Select('status');
-        $status->setLabel('状态');
+        $status->setLabel('Status');
         $status->setValueOptions($statusOptions);
         $this->add($status);
 

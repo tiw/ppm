@@ -1,5 +1,8 @@
 <?php
-
+$this->plugin('formRow')->setTranslator($this->plugin('translate')->getTranslator());
+$this->plugin('formRow')->setTranslatorTextDomain('todo');
+//var_dump($translator);
+//$this->plugin('translate')->setTranslatorTextDomain('todo');
 $title = 'Edit todo';
 $this->headTitle($title);
 

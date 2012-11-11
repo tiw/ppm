@@ -1,31 +1,31 @@
 <?php
 
-$title = 'My Todos';
+$title = $this->translate('My Todos', 'todo');
 $this->headTitle($title);
 ?>
 
 <h1><?php echo $this->escapeHtml($title);?></h1>
 <p>
-    <a href="<?php echo $this->url('todo', array('action'=>'add'));?>">Add new Task</a>
+    <a href="<?php echo $this->url('todo', array('action'=>'add'));?>"><?php echo $this->translate('Add new Task', 'todo'); ?></a>
 </p>
 
 <table class="table">
 <tr>
-    <th>Description</th>
-    <th>Status</th>
-    <th>Assgin To</th>
+    <th><?php echo $this->translate('Description', 'todo'); ?></th>
+    <th><?php echo $this->translate('Status', 'todo'); ?></th>
+    <th><?php echo $this->translate('Assign To', 'todo'); ?></th>
     <th>&nbsp;</th>
 </tr>
 <?php foreach($todos as $todo) : ?>
 <tr>
     <td><?php echo $this->escapeHtml($todo['description']);?></td>
-    <td><?php echo $this->escapeHtml($todo['status']); ?></td>
+    <td><?php echo $this->escapeHtml($this->translate($todo['status'], 'todo')); ?></td>
     <td><?php echo $this->escapeHtml($todo['username']); ?></td>
     <td>
         <a href="<?php echo $this->url(
-             'todo', array('action' => 'edit', 'id' => $todo['id'])); ?>"> Edit </a>
+             'todo', array('action' => 'edit', 'id' => $todo['id'])); ?>"> <?php echo $this->translate('Edit', 'todo'); ?> </a>
          <a href="<?php echo $this->url(
-             'todo', array('action' => 'delete', 'id' => $todo['id'])); ?>"> Delete</a>
+             'todo', array('action' => 'delete', 'id' => $todo['id'])); ?>"> <?php echo $this->translate('Delete', 'todo'); ?></a>
     </td>
 </tr>
 <?php endforeach ?>

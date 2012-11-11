@@ -61,8 +61,9 @@ class TodoController extends AbstractActionController
         $todo = $this->getTodoTable()->getTodo($id);
 
 	    $form = $this->getServiceLocator()->get('TodoForm');
+        $translator = $this->getServiceLocator()->get('translator');
         $form->bind($todo);
-        $form->get('submit')->setAttribute('value', Edit);
+        $form->get('submit')->setAttribute('value', $translator->translate('Edit', 'todo'));
 
         $request = $this->getRequest();
         if ($request->isPost()) {

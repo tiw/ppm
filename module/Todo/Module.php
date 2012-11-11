@@ -58,6 +58,8 @@ class Module
                 'TodoForm' => function($sm) {
                     $form = new TodoForm();
                     $form->setUserMapper($sm->get('UserMapper'));
+                    $tanslator = $sm->get('translator');
+                    $form->setTranslator($sm->get('translator'));
                     $form->setHydrator(new TodoHydrator());
                     $form->bind(new Todo());
                     $form->init();

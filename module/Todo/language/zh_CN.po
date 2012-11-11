@@ -1,0 +1,59 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Todo Module\n"
+"POT-Creation-Date: 2012-11-11 10:18+0800\n"
+"PO-Revision-Date: 2012-11-11 10:20+0800\n"
+"Last-Translator: Ting Wang <ting.wang@anuge.com>\n"
+"Language-Team: Anuge <info@anuge.com>\n"
+"Language: 中文\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.5.4\n"
+"X-Poedit-KeywordsList: translate\n"
+"X-Poedit-Basepath: .\n"
+"X-Poedit-SearchPath-0: ..\n"
+
+#: ../src/Todo/Form/TodoForm.php:56
+msgid "task_new"
+msgstr "新任务"
+
+#: ../src/Todo/Form/TodoForm.php:57
+msgid "task_processing"
+msgstr "进行中"
+
+#: ../src/Todo/Form/TodoForm.php:58
+msgid "task_finished"
+msgstr "结束"
+
+#: ../src/Todo/Form/TodoForm.php:59
+msgid "task_closed"
+msgstr "关闭"
+
+#: ../view/todo/todo/index.phtml:3
+msgid "My Todos"
+msgstr "我的TODO"
+
+#: ../view/todo/todo/index.phtml:9
+msgid "Add new Task"
+msgstr "添加新任务"
+
+#: ../view/todo/todo/index.phtml:14
+msgid "Description"
+msgstr "描述"
+
+#: ../view/todo/todo/index.phtml:15
+msgid "Status"
+msgstr "状态"
+
+#: ../view/todo/todo/index.phtml:16
+msgid "Assign To"
+msgstr "分配给"
+
+#: ../view/todo/todo/index.phtml:26
+msgid "Edit"
+msgstr "编辑"
+
+#: ../view/todo/todo/index.phtml:28
+msgid "Delete"
+msgstr "删除"

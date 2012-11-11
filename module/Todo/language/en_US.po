@@ -1,0 +1,46 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: todo en\n"
+"POT-Creation-Date: 2012-11-09 21:31+0800\n"
+"PO-Revision-Date: 2012-11-09 21:32+0800\n"
+"Last-Translator: Ting Wang <ting.wang@anuge.com>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.5.4\n"
+"X-Poedit-KeywordsList: _;gettext;gettext_noop;translate\n"
+"X-Poedit-Basepath: .\n"
+"X-Poedit-SearchPath-0: ..\n"
+
+#: ../src/Todo/Form/TodoForm.php:56
+msgid "task_new"
+msgstr "New"
+
+#: ../src/Todo/Form/TodoForm.php:57
+msgid "task_processing"
+msgstr "Processing"
+
+#: ../src/Todo/Form/TodoForm.php:58
+msgid "task_finished"
+msgstr "Finished"
+
+#: ../src/Todo/Form/TodoForm.php:59
+msgid "task_closed"
+msgstr "Close"
+
+#: ../view/todo/todo/index.phtml:3
+msgid "My Todos"
+msgstr "The Todo of My"
+
+#: ../view/todo/todo/index.phtml:14
+msgid "Description"
+msgstr "Description"
+
+#: ../view/todo/todo/index.phtml:15
+msgid "Status"
+msgstr "Status"
+
+#: ../view/todo/todo/index.phtml:16
+msgid "Assgin To"
+msgstr "Assgin To"
