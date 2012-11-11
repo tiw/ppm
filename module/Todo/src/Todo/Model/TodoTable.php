@@ -17,6 +17,7 @@ class TodoTable
     {
 	$select = $this->tableGateway->getSql()->select();
 	$select->join(array('u' => 'user'), 'assignto = u.user_id');
+    $select->order('priority ASC');
 	$statement = $this->tableGateway->getSql()->prepareStatementForSqlObject($select);
 	return $results = $statement->execute();
 
