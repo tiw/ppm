@@ -40,6 +40,8 @@ return array(
                 //// Below is the default index action used by the [ZendSkeletonApplication](https://github.com/zendframework/ZendSkeletonApplication)
                 array('route' => 'home', 'roles' => array('guest', 'user')),
                 array('route' => 'todo', 'roles' => array('user')),
+                array('route' => 'product', 'roles' => array('user')),
+                array('route' => 'category', 'roles' => array('user')),
             ),
         ),
     ),
