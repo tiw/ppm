@@ -16,7 +16,9 @@ class Product extends AbstractDbMapper
 
     public function fetchAll()
     {
-        return $this->select($this->getSelect());
+        $select = $this->getSelect();
+        $select->join(array('c'=> 'category'), 'category_id = c.id', array('category_name' => 'name'));
+        return $this->select($select);
     }
 
     public function findById($id)

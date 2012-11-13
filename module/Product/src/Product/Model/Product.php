@@ -42,6 +42,12 @@ class Product
     protected $price;
 
     /**
+     * category name
+     * @var type string
+     */
+    protected $categoryName;
+
+    /**
      * Description of the product
      * @var type string
      */
@@ -105,6 +111,16 @@ class Product
     public function setDescription($description)
     {
         $this->description = $description;
+    }
+
+    public function readCategoryName()
+    {
+        return $this->categoryName;
+    }
+
+    public function writeCategoryName($name)
+    {
+        $this->categoryName = $name;
     }
 }
 

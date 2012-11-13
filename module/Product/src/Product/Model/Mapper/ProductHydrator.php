@@ -14,6 +14,11 @@ use Zend\Stdlib\Hydrator\ClassMethods;
 class ProductHydrator extends ClassMethods
 {
     //put your code here
+    public function hydrate(array $data, $object)
+    {
+        $object->writeCategoryName($data['category_name']);
+        return parent::hydrate($data, $object);
+    }
 }
 
 ?>
