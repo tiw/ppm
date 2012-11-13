@@ -31,6 +31,19 @@ class Category extends AbstractDbMapper
         return $result;
     }
 
+    public function update($entity, $where = null, $tableName = null, HydratorInterface $hydrator = null)
+    {
+        if (!$where) {
+            $where = 'id = ' . $entity->getId();
+        }
+        return parent::update($entity, $where, $tableName, $hydrator);
+    }
+
+    public function deleteById($id, $tableName = null)
+    {
+        $where = 'id = ' . $id;
+        parent::delete($where, $tableName);
+    }
 }
 
 ?>

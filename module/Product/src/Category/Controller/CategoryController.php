@@ -27,6 +27,7 @@ class CategoryController extends AbstractActionController
         }
         return $this->categoryMapper;
     }
+
     public function indexAction()
     {
         return array('categories' => $this->getCategoryMapper()->fetchAll());
@@ -53,6 +54,54 @@ class CategoryController extends AbstractActionController
             }
         }
         return array('form' => $form);
+    }
+
+    public function editAction()
+    {
+        $id = (int) $this->params()->fromRoute('id', 0);
+        if (!$id) {
+            return $this->redirect()->toRoute('category', array(
+                'action' => 'add'
+            ));
+        }
+        $category = $this->getCategoryMapper()->findById($id);
+        $form = $this->getServiceLocator()->get('CategoryForm');
+        $form->bind($category);
+        $form->get('submit')->setAttribute('value', 'Edit');
+
+        $request = $this->getRequest();
+        if ($request->isPost()) {
+            $form->setData($request->getPost());
+            if ($form->isValid()) {
+                $this->getCategoryMapper()->update($form->getData());
+                return $this->redirect()->toRoute('category');
+            }
+        }
+
+        return array(
+            'id' => $id,
+            'form' => $form,
+        );
+    }
+
+    public function deleteAction()
+    {
+        $id = (int) $this->params()->fromRoute('id', 0);
+        if (!$id) {
+            return $this->redirect()->toRoute('category');
+        }
+        $request = $this->getRequest();
+        if ($request->isPost()) {
+            $del = $request->getPost('del', 'No');
+            if ($del == 'Yes') {
+                $this->getCategoryMapper()->deleteById($id);
+            }
+            return $this->redirect()->toRoute('category');
+        }
+        return array(
+            'id' => $id,
+            'category' => $this->getCategoryMapper()->findById($id),
+        );
     }
 }
 
