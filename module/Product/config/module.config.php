@@ -18,7 +18,7 @@ return array(
             'category' => array(
                 'type' => 'segment',
                 'options' => array(
-                    'route' => '/category[/:action][/:id]',
+                    'route' => '/admin/category[/:action][/:id]',
                     'defaults' => array(
                         'controller' => 'Category\Controller\Category',
                         'action' => 'index',
@@ -28,7 +28,7 @@ return array(
             'product' => array(
                 'type' => 'segment',
                 'options' => array(
-                    'route' => '/product[/:action][/:id]',
+                    'route' => '/admin/product[/:action][/:id]',
                     'defaults' => array(
                         'controller' => 'Product\Controller\Product',
                         'action' => 'index',

@@ -7,7 +7,10 @@ use Category\Form\CategoryForm;
 use Category\Model\Mapper\Category as CategoryMapper;
 use Category\Model\Category;
 use Category\Model\Mapper\CategoryHydrator;
-
+use Product\Form\ProductForm;
+use Product\Model\Mapper\ProductHydrator;
+use Product\Model\Product;
+use Product\Model\Mapper\Product as ProductMapper;
 
 class Module extends AbstractModule
 {
@@ -42,11 +45,26 @@ class Module extends AbstractModule
                      $form->init();
                      return $form;
                 },
+                'ProductForm' => function($sm) {
+                    $form = new ProductForm();
+                    $form->setHydrator(new ProductHydrator());
+                    $form->setCategoryMapper($sm->get('Category\Model\Mapper\Category'));
+                    $form->bind(new Product());
+                    $form->init();
+                    return $form;
+                },
                 'Category\Model\Mapper\Category' => function($sm) {
                     $mapper = new CategoryMapper();
                     $mapper->setDbAdapter($sm->get('Zend\Db\Adapter\Adapter'));
                     $mapper->setEntityPrototype(new Category());
                     $mapper->setHydrator(new CategoryHydrator());
+                    return $mapper;
+                },
+                'Product\Model\Mapper\Product' => function($sm) {
+                    $mapper = new ProductMapper();
+                    $mapper->setDbAdapter($sm->get('Zend\Db\Adapter\Adapter'));
+                    $mapper->setEntityPrototype(new Product());
+                    $mapper->setHydrator(new ProductHydrator());
                     return $mapper;
                 }
             ),

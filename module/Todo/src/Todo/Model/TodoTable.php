@@ -6,6 +6,7 @@ use Zend\Db\TableGateway\TableGateway;
 
 class TodoTable
 {
+
     protected $tableGateway;
 
     public function __construct(TableGateway $tableGateway)
@@ -15,14 +16,14 @@ class TodoTable
 
     public function fetchAll()
     {
-	$select = $this->tableGateway->getSql()->select();
-	$select->join(array('u' => 'user'), 'assignto = u.user_id');
-    $select->order('priority ASC');
-	$statement = $this->tableGateway->getSql()->prepareStatementForSqlObject($select);
-	return $results = $statement->execute();
+        $select = $this->tableGateway->getSql()->select();
+        $select->join(array('u' => 'user'), 'assignto = u.user_id');
+        $select->order('priority ASC');
+        $statement = $this->tableGateway->getSql()->prepareStatementForSqlObject($select);
+        return $results = $statement->execute();
 
         //$resultSet = $this->tableGateway->selectWith($select);
-	//return $resultSet;
+        //return $resultSet;
     }
 
     public function getTodo($id)
@@ -61,4 +62,5 @@ class TodoTable
     {
         $this->tableGateway->delete((array('id' => $id)));
     }
+
 }
