@@ -1,6 +1,30 @@
 <?php
+$title = 'Category';
 
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+$this->headTitle($title);
+?>
+<h1> <?php echo $this->escapeHtml($title);?></h1>
+<p>
+    <a class="btn" href="<?php echo $this->url('category', array('action' => 'add')); ?>">
+       Add
+    </a>
+</p>
+
+<table class="table table-striped">
+    <tr>
+        <th>Id</th>
+        <th>Name</th>
+        <th>&nbsp;</th>
+    </tr>
+    <?php foreach ($categories as $category) : ?>
+    <tr>
+        <td><?php echo $this->escapeHtml($category->getId()); ?></td>
+        <td><?php echo $this->escapeHtml($category->getName()); ?></td>
+        <td>
+            <a class="btn" href="#">Edit</a>
+            <a class="btn" href="#">Delete</a>
+        </td>
+    </tr>
+
+    <?php endforeach ?>
+</table>

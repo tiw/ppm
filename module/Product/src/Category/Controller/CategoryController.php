@@ -29,7 +29,7 @@ class CategoryController extends AbstractActionController
     }
     public function indexAction()
     {
-
+        return array('categories' => $this->getCategoryMapper()->fetchAll());
     }
 
     public function addAction()
