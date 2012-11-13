@@ -46,6 +46,47 @@ class ProductController extends AbstractActionController
         return array('form' => $form);
     }
 
+    public function editAction()
+    {
+        $id = (int) $this->params()->fromRoute('id', 0);
+        if (!$id) {
+            return $this->redirect()->toRoute('product', array(
+                'action' => 'add',
+            ));
+        }
+        $product = $this->getProductMapper()->findById($id);
+        $form = $this->getServiceLocator()->get('ProductForm');
+        $form->bind($product);
+        $form->get('submit')->setValue('Edit');
+
+        $request = $this->getRequest();
+        if ($request->isPost()) {
+            $form->setData($request->getPost());
+            if ($form->isValid()) {
+                $this->getProductMapper()->update($form->getData());
+                return $this->redirect()->toRoute('product');
+            }
+        }
+        return array('id' => $id, 'form' => $form);
+    }
+
+    public function deleteAction()
+    {
+        $id = (int) $this->params()->fromRoute('id', 0);
+        if (!$id) {
+            return $this->redirect()->toRoute('product');
+        }
+        $request = $this->getRequest();
+        if ($request->isPost()) {
+            $del = $request->getPost('del', 'No');
+            if ($del == 'Yes') {
+                $this->getProductMapper()->deleteById($id);
+            }
+            return $this->redirect()->toRoute('product');
+        }
+        return array('id' => $id, 'product' => $this->getProductMapper()->findById($id));
+    }
+
 }
 
 ?>
