@@ -5,6 +5,7 @@ return array(
         'invokables' => array(
             'Product\Controller\Product' => 'Product\Controller\ProductController',
             'Category\Controller\Category' => 'Category\Controller\CategoryController',
+            'Product\Controller\ProductFront' => 'Product\Controller\ProductFrontController',
         ),
     ),
     'view_manager' => array(
@@ -34,6 +35,16 @@ return array(
                         'action' => 'index',
                     ),
                 ),
+            ),
+            'product-front' => array(
+                'type' => 'segment',
+                'options' => array(
+                    'route' => '/product[/:action][/:id]',
+                    'defaults' => array(
+                        'controller' => 'Product\Controller\ProductFront',
+                        'action' => 'index',
+                    ),
+                 ),
             ),
         ),
     ),

@@ -3,6 +3,7 @@ $title = 'Add new product';
 $this->headTitle($title);
 $form = $this->form;
 $form->setAttribute('action', $this->url('product', array('action' => 'add')));
+$form->prepare();
 ?>
 <h1><?php echo $title; ?></h1>
 <?php
@@ -13,5 +14,7 @@ echo $this->formRow($form->get('category_id'));
 echo $this->formRow($form->get('price'));
 echo $this->formRow($form->get('display_name'));
 echo $this->formRow($form->get('description'));
+echo $this->formRow($form->get('image1'));
+echo $this->formRow($form->get('image2'));
 echo $this->formRow($form->get('submit'));
 echo $this->form()->closeTag();

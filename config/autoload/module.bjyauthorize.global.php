@@ -42,6 +42,7 @@ return array(
                 array('route' => 'todo', 'roles' => array('user')),
                 array('route' => 'product', 'roles' => array('user')),
                 array('route' => 'category', 'roles' => array('user')),
+                array('route' => 'product-front', 'roles' => array('guest', 'user')),
             ),
         ),
     ),

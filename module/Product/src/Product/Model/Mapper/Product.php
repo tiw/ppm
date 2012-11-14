@@ -29,7 +29,9 @@ class Product extends AbstractDbMapper
 
     public function insert($entity, $tableName = null, \Zend\Stdlib\Hydrator\HydratorInterface $hydrator = null)
     {
-        parent::insert($entity, $tableName, $hydrator);
+        $result = parent::insert($entity, $tableName, $hydrator);
+        $entity->setId($result->getGeneratedValue());
+        return $entity;
     }
 
 

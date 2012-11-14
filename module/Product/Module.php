@@ -11,6 +11,9 @@ use Product\Form\ProductForm;
 use Product\Model\Mapper\ProductHydrator;
 use Product\Model\Product;
 use Product\Model\Mapper\Product as ProductMapper;
+use Product\Model\Mapper\Image as ImageMapper;
+use Product\Model\Image;
+use Product\Model\Mapper\ImageHydrator;
 
 class Module extends AbstractModule
 {
@@ -65,6 +68,13 @@ class Module extends AbstractModule
                     $mapper->setDbAdapter($sm->get('Zend\Db\Adapter\Adapter'));
                     $mapper->setEntityPrototype(new Product());
                     $mapper->setHydrator(new ProductHydrator());
+                    return $mapper;
+                },
+                'Product\Model\Mapper\Image' => function($sm) {
+                    $mapper = new ImageMapper();
+                    $mapper->setDbAdapter($sm->get('Zend\Db\Adapter\Adapter'));
+                    $mapper->setEntityPrototype(new Image());
+                    $mapper->setHydrator(new ImageHydrator());
                     return $mapper;
                 }
             ),

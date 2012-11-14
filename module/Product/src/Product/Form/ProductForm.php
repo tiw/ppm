@@ -4,6 +4,7 @@ namespace Product\Form;
 
 use Zend\Form\Form;
 use Zend\Form\Element\Select;
+use Zend\Form\Element\File;
 
 /*
  * To change this template, choose Tools | Templates
@@ -36,7 +37,7 @@ class ProductForm extends Form
     public function __construct()
     {
         $name = 'product';
-        parent::__construct($name, $options);
+        parent::__construct($name, $options=null);
     }
 
     public function init()
@@ -88,6 +89,14 @@ class ProductForm extends Form
                 'label' => 'Price',
             ),
         ));
+
+        $imageOne = new File('image1');
+        $imageOne->setLabel('Image 1');
+        $this->add($imageOne);
+
+        $imageTwo = new File('image2');
+        $imageTwo->setLabel('Image 2');
+        $this->add($imageTwo);
 
         $this->add(array(
             'name' => 'description',
