@@ -4,6 +4,7 @@ namespace Product\Controller;
 
 use Zend\Mvc\Controller\AbstractActionController;
 use Product\Model\Product;
+use Product\Model\Image;
 /**
  * Description of ProductController
  *
@@ -23,6 +24,15 @@ class ProductController extends AbstractActionController
         return $this->productMapper;
     }
 
+    public function getProductImageMapper()
+    {
+        if (!$this->productImageMapper) {
+            $sm = $this->getServiceLocator();
+            $this->productImageMapper = $sm->get('Product\Model\Mapper\Image');
+        }
+        return $this->productImageMapper;
+    }
+
     public function indexAction()
     {
         return array('products' => $this->getProductMapper()->fetchAll());
@@ -34,16 +44,46 @@ class ProductController extends AbstractActionController
         $form->get('submit')->setValue('Add');
         $request = $this->getRequest();
         if ($request->isPost()) {
-            $product = new Product;
+
             $form->setData($request->getPost());
             if ($form->isValid()) {
-                $product = $form->getData();
                 $mapper = $this->getProductMapper();
-                $mapper->insert($product);
+                $product = $mapper->insert($form->getData());
+                foreach (range(1, 3) as $index) {
+                    $this->_saveFile($index, $product->getId());
+                }
                 return $this->redirect()->toRoute('product');
             }
         }
         return array('form' => $form);
+    }
+
+    /**
+     * @todo: use it
+     * @param type $index
+     * @param type $productId
+     */
+    private function _saveFile($index, $productId)
+    {
+        $imageName = 'image' . $index;
+        if ($_FILES[$imageName]['error'] == 0) {
+            $suffix = array_pop(explode('.', $_FILES[$imageName]['name']));
+            $generatedImageName = "product" . $productId . '_' . $index . '.' . $suffix;
+            $uploadName = __DIR__ . '/../../../../../public/product_images/' . $generatedImageName;
+            $imagePath = "/product_images/" . $generatedImageName;
+            if ($_FILES['image' . $index]['size'] < 0) {
+                return;
+            }
+            $result = move_uploaded_file($_FILES['image' . $index]['tmp_name'], $uploadName);
+            if ($result) {
+                $image = new Image();
+                $image->setName('image' . $index);
+                $image->setProductId($productId);
+                $image->setImagePath($imagePath);
+                $image->setSequence($index);
+                $this->getProductImageMapper()->insert($image);
+            }
+        }
     }
 
     public function editAction()
@@ -51,8 +91,8 @@ class ProductController extends AbstractActionController
         $id = (int) $this->params()->fromRoute('id', 0);
         if (!$id) {
             return $this->redirect()->toRoute('product', array(
-                'action' => 'add',
-            ));
+                    'action' => 'add',
+                ));
         }
         $product = $this->getProductMapper()->findById($id);
         $form = $this->getServiceLocator()->get('ProductForm');

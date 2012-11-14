@@ -28,7 +28,7 @@ class Category extends AbstractDbMapper
     {
         $result = parent::insert($entity, $tableName, $hydrator);
         $entity->setId($result->getGeneratedValue());
-        return $result;
+        return $entity;
     }
 
     public function update($entity, $where = null, $tableName = null, HydratorInterface $hydrator = null)
