@@ -1,0 +1,14 @@
+<?php
+$product = $this->product;
+$images = $this->images;
+?>
+
+<dl>
+    <dt>Name</dt>
+    <dd><?php echo $product->getName(); ?></dd>
+    <?php foreach ($images as $image): ?>
+    <dt>Image 1</dt>
+    <dd><img src="<?php echo $image->getImagePath();?>" /></dd>
+    <?php endforeach ?>
+
+</dl>
