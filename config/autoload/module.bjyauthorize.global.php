@@ -43,6 +43,7 @@ return array(
                 array('route' => 'product', 'roles' => array('user')),
                 array('route' => 'category', 'roles' => array('user')),
                 array('route' => 'product-front', 'roles' => array('guest', 'user')),
+                array('route' => 'product-image', 'roles' => array('user')),
             ),
         ),
     ),

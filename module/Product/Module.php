@@ -56,6 +56,13 @@ class Module extends AbstractModule
                     $form->init();
                     return $form;
                 },
+                'ImageForm' => function($sm) {
+                    $form = new Form\ImageForm();
+                    $form->setHydrator(new ImageHydrator());
+                    $form->bind(new Image());
+                    $form->init();
+                    return $form;
+                },
                 'Category\Model\Mapper\Category' => function($sm) {
                     $mapper = new CategoryMapper();
                     $mapper->setDbAdapter($sm->get('Zend\Db\Adapter\Adapter'));

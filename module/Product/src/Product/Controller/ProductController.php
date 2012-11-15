@@ -5,6 +5,7 @@ namespace Product\Controller;
 use Zend\Mvc\Controller\AbstractActionController;
 use Product\Model\Product;
 use Product\Model\Image;
+
 /**
  * Description of ProductController
  *
@@ -14,6 +15,8 @@ class ProductController extends AbstractActionController
 {
 
     protected $productMapper;
+
+    protected $productImageMapper;
 
     public function getProductMapper()
     {
@@ -107,7 +110,8 @@ class ProductController extends AbstractActionController
                 return $this->redirect()->toRoute('product');
             }
         }
-        return array('id' => $id, 'form' => $form);
+        $images = $this->getProductImageMapper()->findByProduct($id);
+        return array('id' => $id, 'form' => $form, 'images' => $images);
     }
 
     public function deleteAction()

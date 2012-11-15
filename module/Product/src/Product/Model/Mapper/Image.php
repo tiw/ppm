@@ -15,10 +15,23 @@ class Image extends AbstractDbMapper
         return $entity;
     }
 
+    public function findById($id)
+    {
+        return $this->select($this->getSelect()->where(array('id' => $id)))->current();
+    }
+
     public function findByProduct($productId)
     {
         $select = $this->getSelect();
         $select->where(array('product_id' => $productId));
         return $this->select($select);
+    }
+
+    public function update($entity, $where=null, $tableName = null, \Zend\Stdlib\Hydrator\HydratorInterface $hydrator = null)
+    {
+        if (!$where) {
+            $where = 'id = ' . $entity->getId();
+        }
+        return parent::update($entity, $where, $tableName, $hydrator);
     }
 }

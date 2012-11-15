@@ -6,6 +6,7 @@ return array(
             'Product\Controller\Product' => 'Product\Controller\ProductController',
             'Category\Controller\Category' => 'Category\Controller\CategoryController',
             'Product\Controller\ProductFront' => 'Product\Controller\ProductFrontController',
+            'Product\Controller\Image' => 'Product\Controller\ImageController',
         ),
     ),
     'view_manager' => array(
@@ -44,7 +45,17 @@ return array(
                         'controller' => 'Product\Controller\ProductFront',
                         'action' => 'index',
                     ),
-                 ),
+                ),
+            ),
+            'product-image' => array(
+                'type' => 'segment',
+                'options' => array(
+                    'route' => '/admin/product-image[/:action][/:id]',
+                    'defaults' => array(
+                        'controller' => 'Product\Controller\Image',
+                        'action' => 'index',
+                    ),
+                ),
             ),
         ),
     ),
