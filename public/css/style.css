@@ -35,3 +35,23 @@ div.container a.brand {
     margin-left: 0;
     padding: 8px 20px 12px 40px;
 }
+
+.bigger-top-margin {
+    margin-top: 70px;
+}
+
+footer {
+    padding: 40px 0;
+    text-align: center;
+    margin-top: 40px;
+    color: #FFFFFF;
+    border: solid;
+    border-top: solid #EDEDED 1px;
+    /*
+    background: url("../images/footer3.jpg") no-repeat right;
+    */
+}
+footer a {
+    margin: 0 2em;
+    color: #777;
+}
