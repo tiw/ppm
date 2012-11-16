@@ -41,4 +41,10 @@ class ProductFrontController extends AbstractActionController
         return array('product' => $product, 'images' => $images);
     }
 
+    public function listAction()
+    {
+        $images = $this->getProductImageMapper()->getAllFirstImage();
+        return array('images' => $images);
+    }
+
 }
