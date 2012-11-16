@@ -43,10 +43,10 @@ div.container a.brand {
 footer {
     padding: 40px 0;
     text-align: center;
-    margin-top: 40px;
-    color: #FFFFFF;
-    border: solid;
-    border-top: solid #EDEDED 1px;
+    margin-top: 20px;
+    /*color: #FFFFFF;*/
+    /*border: solid;*/
+    /*border-top: solid #EDEDED 1px;*/
     /*
     background: url("../images/footer3.jpg") no-repeat right;
     */

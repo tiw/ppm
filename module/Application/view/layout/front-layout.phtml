@@ -19,6 +19,7 @@
         <!-- Scripts -->
         <?php
         echo $this->headScript()->prependFile($this->basePath() . '/js/html5.js', 'text/javascript', array('conditional' => 'lt IE 9',))
+            ->prependFile($this->basePath() . '/js/jquery.animate-colors-min.js')
             ->prependFile($this->basePath() . '/js/bootstrap.min.js')
             ->prependFile($this->basePath() . '/js/jquery.min.js')
         ?>
@@ -36,7 +37,7 @@
                             <span class="subtitle">Tsingzoo</span>
                             <br/>
                             <br/>
-                            <ul class="nav nav-pills nav-stacked">
+                            <ul class="color-animate-nav">
                                 <li><a href="<?php echo $this->url('product-front', array('action' => 'category', 'id' => 7)); ?>">头饰</a></li>
                                 <li><a href="#">项链</a></li>
                                 <li><a href="#">戒指</a></li>
@@ -49,15 +50,28 @@
                     </div>
                 </div>
             </div>
+            <div class="separate-line span12"></div>
 
             <footer>
                 <p>
                     <a href="#">公司简介</a>
                     <a href="#">联系我们</a>
                 </p>
-                <p>&copy; 2012 by Tsingzoo. <?php echo $this->translate('All rights reserved.') ?></p>
+                <br/><br/>
+                <p>&copy; 2012 by Tsingzoo. <?php echo $this->translate('All rights reserved.') ?> </p>
+                <p>Made by<a href="http://tiddr.de">tiddr</a></p>
             </footer>
         </div> <!-- /container -->
         <?php echo $this->inlineScript() ?>
+        <script type="text/javascript" charset="utf-8">
+            $(function(){
+               $('ul.color-animate-nav li').mouseover(function(event){
+                  $(event.target).animate({color: '#808080'}, 700);
+               });
+               $('ul.color-animate-nav li').mouseout(function(event){
+                  $(event.target).animate({color: '#e5e5e5'}, 700);
+               });
+            });
+        </script>
     </body>
 </html>

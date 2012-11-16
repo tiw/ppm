@@ -9,6 +9,9 @@
 root {
     display: block;
 }
+body {
+    background-image: url('/images/bg.png');
+}
 h2.title {
     margin-bottom: 0;
     margin-top: 0;
@@ -55,4 +58,16 @@ footer p{
 }
 .content {
     min-height: 700px;
+}
+.separate-line {
+    background-image: url("/images/separator.png");
+}
+
+.color-animate-nav li a:hover{
+    color: #e5e5e5;
+}
+ul.color-animate-nav li {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    list-style-type: none;
 }
