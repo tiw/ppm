@@ -54,20 +54,21 @@ class ImageController extends AbstractActionController
 
     private function _saveFile($index, $productId, $image = null)
     {
-
-        if (null !== $image && $image->getImagePath()) {
-            $filename = __DIR__ . '/../../../../../public/' . $image->getImagePath();
-            if (file_exists($filename)) {
-                unlink($filename);
-            }
-        }
         $imageName = 'image';
         if ($_FILES[$imageName]['error'] == 0) {
+
+            if (null !== $image && $image->getImagePath()) {
+                $filename = __DIR__ . '/../../../../../public/' . $image->getImagePath();
+                if (file_exists($filename)) {
+                    unlink($filename);
+                }
+            }
+
             $suffix = array_pop(explode('.', $_FILES[$imageName]['name']));
             $generatedImageName = "product" . $productId . '_' . $index . '.' . $suffix;
             $uploadName = __DIR__ . '/../../../../../public/product_images/' . $generatedImageName;
             $imagePath = "/product_images/" . $generatedImageName;
-            if ($_FILES['image' . $index]['size'] < 0) {
+            if ($_FILES[$imageName]['size'] == 0) {
                 return;
             }
             $result = move_uploaded_file($_FILES[$imageName]['tmp_name'], $uploadName);

@@ -34,4 +34,10 @@ class Image extends AbstractDbMapper
         }
         return parent::update($entity, $where, $tableName, $hydrator);
     }
+
+    public function getAllFirstImage()
+    {
+        $select = $this->getSelect()->where(array('sequence' => 1));
+        return $this->select($select);
+    }
 }
