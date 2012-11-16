@@ -17,8 +17,13 @@ class Product extends AbstractDbMapper
     public function fetchAll()
     {
         $select = $this->getSelect();
-        $select->join(array('c'=> 'category'), 'category_id = c.id', array('category_name' => 'name'));
+        $select->join(array('c' => 'category'), 'category_id = c.id', array('category_name' => 'name'));
         return $this->select($select);
+    }
+
+    public function fetchProductByCategory($id)
+    {
+        return $this->select($this->getSelect()->where(array('category_id' => $id)));
     }
 
     public function findById($id)
@@ -34,8 +39,7 @@ class Product extends AbstractDbMapper
         return $entity;
     }
 
-
-    public function update($entity, $where=null, $tableName = null, \Zend\Stdlib\Hydrator\HydratorInterface $hydrator = null)
+    public function update($entity, $where = null, $tableName = null, \Zend\Stdlib\Hydrator\HydratorInterface $hydrator = null)
     {
         if (!$where) {
             $where = 'id = ' . $entity->getId();

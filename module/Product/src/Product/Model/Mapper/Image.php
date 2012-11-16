@@ -40,4 +40,9 @@ class Image extends AbstractDbMapper
         $select = $this->getSelect()->where(array('sequence' => 1));
         return $this->select($select);
     }
+
+    public function getFirstImage($productId)
+    {
+        return $this->select($this->getSelect()->where(array('sequence' => 1, 'product_id' => $productId)))->current();
+    }
 }

@@ -1,0 +1,28 @@
+<div  class="row-fluid product-list">
+    <?php $index = 0; ?>
+    <?php foreach ($this->products as $product): ?>
+
+        <?php if ($index % 4 == 0) : ?>
+        </div>
+        <div  class="row-fluid product-list">
+        <?php endif; ?>
+        <?php $index++; ?>
+        <div class="single-product span3">
+            <div class="category-image">
+                <a href="<?php echo $this->url('product-front', array('action' => 'index', 'id' => $product->getId())); ?>">
+                    <?php
+                    $imagePath = $this->imageMapper->getFirstImage($product->getId())->getImagePath();
+                    if ($imagePath) {
+                        echo '<img src="' . $imagePath . '"  width="300" height="300"/>';
+                    } else {
+                        echo '<img src="/product-images/dummy.jpg"  width="300" height="300"/>';
+                    }
+                    ?>
+                </a>
+                Author: <a href="#">Jack</a>
+            </div>
+            <div class="product-description">
+                <?php echo $product->getDisplayName(); ?>
+            </div>
+        </div>
+    <?php endforeach; ?>

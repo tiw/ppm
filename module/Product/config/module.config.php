@@ -43,7 +43,7 @@ return array(
                     'route' => '/product[/:action][/:id]',
                     'defaults' => array(
                         'controller' => 'Product\Controller\ProductFront',
-                        'action' => 'index',
+                        'action' => 'list',
                     ),
                 ),
             ),
