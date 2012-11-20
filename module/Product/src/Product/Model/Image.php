@@ -1,18 +1,15 @@
 <?php
+
 namespace Product\Model;
 
 class Image
 {
+
     protected $id;
-
     protected $productId;
-
     protected $imagePath;
-
     protected $name;
-
     protected $sequence;
-
     protected $description;
 
     public function getId()
@@ -38,6 +35,24 @@ class Image
     public function getImagePath()
     {
         return $this->imagePath;
+    }
+
+    public function readThumbImagePath()
+    {
+        return str_replace('.', '_th.', $this->getImagePath());
+    }
+
+    public function readSingleProductImage()
+    {
+        return str_replace('.', '_sp.', $this->getImagePath());
+    }
+
+    /**
+     * product image in the product list
+     */
+    public function readListProductImage()
+    {
+        return str_replace('.', '_ls.', $this->getImagePath());
     }
 
     public function setImagePath($imagePath)
@@ -74,6 +89,5 @@ class Image
     {
         $this->description = $description;
     }
-
 
 }

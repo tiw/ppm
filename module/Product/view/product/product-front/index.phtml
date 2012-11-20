@@ -6,7 +6,7 @@ $images = $this->images;
 <h3><?php echo $product->getName(); ?></h3>
 <?php foreach ($images as $image): ?>
 <div class="single-product-image">
-    <img src="<?php echo $image->getImagePath(); ?>" width="300" height="300" />
+    <img src="<?php echo $image->readSingleProductImage(); ?>" width="300" height="300" />
 </div>
 
 <?php endforeach ?>

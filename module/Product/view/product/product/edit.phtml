@@ -23,7 +23,7 @@ echo $this->form()->closeTag();
 <h2>Edit images</h2>
 <ul>
     <?php foreach($images as $image) :?>
-    <li><img src="<?php echo $image->getImagePath(); ?>"/>
+    <li><img src="<?php echo $image->readThumbImagePath(); ?>"/>
         <a class="btn" href="<?php echo $this->url('product-image', array('action' => 'edit', 'id' => $image->getId())); ?>">edit</a>
     </li>
     <?php endforeach; ?>

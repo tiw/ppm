@@ -11,7 +11,7 @@
             <div class="category-image">
                 <a href="<?php echo $this->url('product-front', array('action' => 'index', 'id' => $product->getId())); ?>">
                     <?php
-                    $imagePath = $this->imageMapper->getFirstImage($product->getId())->getImagePath();
+                    $imagePath = $this->imageMapper->getFirstImage($product->getId())->readListProductImage();
                     if ($imagePath) {
                         echo '<img src="' . $imagePath . '"  width="300" height="300"/>';
                     } else {

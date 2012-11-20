@@ -15,7 +15,6 @@ class ProductController extends AbstractActionController
 {
 
     protected $productMapper;
-
     protected $productImageMapper;
 
     public function getProductMapper()
@@ -73,6 +72,9 @@ class ProductController extends AbstractActionController
             $suffix = array_pop(explode('.', $_FILES[$imageName]['name']));
             $generatedImageName = 'product' . $productId . '_' . $index . '.' . $suffix;
             $singleProductImageName = 'product' . $productId . '_' . $index . '_sp.' . $suffix;
+            $listProductImageName = 'product' . $productId . '_' . $index . '_ls.' . $suffix;
+            $thumbProductImageName = 'product' . $productId . '_' . $index . '_th.' . $suffix;
+
             $imageDir = __DIR__ . '/../../../../../public/product_images/';
 
 
@@ -84,8 +86,11 @@ class ProductController extends AbstractActionController
             $result = move_uploaded_file($_FILES['image' . $index]['tmp_name'], $uploadName);
             // resize the images
 
-            SmartResizer::resize($imageDir, $generatedImageName, $generatedImageName, 800, 600);
+            SmartResizer::resize($imageDir, $generatedImageName, $generatedImageName, 937, 703);
             SmartResizer::resize($imageDir, $generatedImageName, $singleProductImageName, 300, 225);
+            SmartResizer::resize($imageDir, $generatedImageName, $listProductImageName, 194, 146);
+            SmartResizer::resize($imageDir, $generatedImageName, $thumbProductImageName, 100, 75);
+
             if ($result) {
                 $image = new Image();
                 $image->setName('image' . $index);
@@ -94,7 +99,6 @@ class ProductController extends AbstractActionController
                 $image->setSequence($index);
                 $this->getProductImageMapper()->insert($image);
             }
-
         }
     }
 
