@@ -8,6 +8,7 @@ return array(
         'Todo',
         'User',
         'Product',
+        'Tiddr',
     ),
     'module_listener_options' => array(
         'config_glob_paths'    => array(

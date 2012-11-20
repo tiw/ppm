@@ -3,7 +3,7 @@
 namespace Product\Controller;
 
 use Zend\Mvc\Controller\AbstractActionController;
-use Product\Model\Product;
+use Tiddr\Image\SmartResizer;
 use Product\Model\Image;
 
 /**
@@ -71,13 +71,21 @@ class ProductController extends AbstractActionController
         $imageName = 'image' . $index;
         if ($_FILES[$imageName]['error'] == 0) {
             $suffix = array_pop(explode('.', $_FILES[$imageName]['name']));
-            $generatedImageName = "product" . $productId . '_' . $index . '.' . $suffix;
-            $uploadName = __DIR__ . '/../../../../../public/product_images/' . $generatedImageName;
+            $generatedImageName = 'product' . $productId . '_' . $index . '.' . $suffix;
+            $singleProductImageName = 'product' . $productId . '_' . $index . '_sp.' . $suffix;
+            $imageDir = __DIR__ . '/../../../../../public/product_images/';
+
+
+            $uploadName = $imageDir . $generatedImageName;
             $imagePath = "/product_images/" . $generatedImageName;
-            if ($_FILES['image' . $index]['size'] < 0) {
+            if ($_FILES['image' . $index]['size'] == 0) {
                 return;
             }
             $result = move_uploaded_file($_FILES['image' . $index]['tmp_name'], $uploadName);
+            // resize the images
+
+            SmartResizer::resize($imageDir, $generatedImageName, $generatedImageName, 800, 600);
+            SmartResizer::resize($imageDir, $generatedImageName, $singleProductImageName, 300, 225);
             if ($result) {
                 $image = new Image();
                 $image->setName('image' . $index);
@@ -86,6 +94,7 @@ class ProductController extends AbstractActionController
                 $image->setSequence($index);
                 $this->getProductImageMapper()->insert($image);
             }
+
         }
     }
 
