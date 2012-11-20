@@ -10,6 +10,3 @@
 [submodule "vendor/BjyAuthorize"]
 	path = vendor/BjyAuthorize
 	url = https://github.com/bjyoungblood/BjyAuthorize.git
-[submodule "vendor/wideimage"]
-	path = vendor/wideimage
-	url = https://github.com/spekkionu/wideimage.git
