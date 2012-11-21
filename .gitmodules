@@ -10,3 +10,6 @@
 [submodule "vendor/BjyAuthorize"]
 	path = vendor/BjyAuthorize
 	url = https://github.com/bjyoungblood/BjyAuthorize.git
+[submodule "vendor/DluTwBootstrap"]
+	path = vendor/DluTwBootstrap
+	url = https://bitbucket.org/dlu/dlutwbootstrap.git
