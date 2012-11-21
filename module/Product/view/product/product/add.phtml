@@ -7,14 +7,15 @@ $form->prepare();
 ?>
 <h1><?php echo $title; ?></h1>
 <?php
-echo $this->form()->openTag($form);
-echo $this->formHidden($form->get('id'));
-echo $this->formRow($form->get('name'));
-echo $this->formRow($form->get('category_id'));
-echo $this->formRow($form->get('price'));
-echo $this->formRow($form->get('display_name'));
-echo $this->formRow($form->get('description'));
-echo $this->formRow($form->get('image1'));
-echo $this->formRow($form->get('image2'));
-echo $this->formRow($form->get('submit'));
-echo $this->form()->closeTag();
+echo $this->formTwb($form,\DluTwBootstrap\Form\FormUtil::FORM_TYPE_HORIZONTAL);
+//echo $this->form()->openTag($form);
+//echo $this->formHidden($form->get('id'));
+//echo $this->formRow($form->get('name'));
+//echo $this->formRow($form->get('category_id'));
+//echo $this->formRow($form->get('price'));
+//echo $this->formRow($form->get('display_name'));
+//echo $this->formRow($form->get('description'));
+//echo $this->formRow($form->get('image1'));
+//echo $this->formRow($form->get('image2'));
+//echo $this->formRow($form->get('submit'));
+//echo $this->form()->closeTag();

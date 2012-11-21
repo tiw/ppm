@@ -4,6 +4,7 @@ return array(
         'ZfcBase',
         'ZfcUser',
         'BjyAuthorize',
+        'DluTwBootstrap',
         'Application',
         'Todo',
         'User',

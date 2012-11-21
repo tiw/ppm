@@ -8,16 +8,17 @@ $images = $this->images;
 $form = $this->form;
 $form->setAttribute('action', $this->url('product', array('action' => 'edit', 'id' => $this->id)));
 $form->prepare();
+echo $this->formTwb($form);
 
-echo $this->form()->openTag($form);
-echo $this->formHidden($form->get('id'));
-echo $this->formRow($form->get('name'));
-echo $this->formRow($form->get('category_id'));
-echo $this->formRow($form->get('display_name'));
-echo $this->formRow($form->get('price'));
-echo $this->formRow($form->get('description'));
-echo $this->formRow($form->get('submit'));
-echo $this->form()->closeTag();
+//echo $this->form()->openTag($form);
+//echo $this->formHidden($form->get('id'));
+//echo $this->formRow($form->get('name'));
+//echo $this->formRow($form->get('category_id'));
+//echo $this->formRow($form->get('display_name'));
+//echo $this->formRow($form->get('price'));
+//echo $this->formRow($form->get('description'));
+//echo $this->formRow($form->get('submit'));
+//echo $this->form()->closeTag();
 
 ?>
 <h2>Edit images</h2>

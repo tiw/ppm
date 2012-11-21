@@ -55,11 +55,18 @@ class ProductForm extends Form
         foreach ($allCategories as $category) {
             $categoryOptions[$category->getId()] = $category->getName();
         }
-        $categorySelect = new Select('category_id');
-        $categorySelect->setLabel('Category');
-        $categorySelect->setValueOptions($categoryOptions);
-        $this->add($categorySelect);
 
+        $this->add(array(
+            'name'          => 'category_id',
+            'type'          => 'Zend\Form\Element\Select',
+            'options'       => array(
+                'label'             => 'Category',
+                //'hint'              => 'Hint',
+                //'description'       => 'Description.',
+                'value_options'     => $categoryOptions,
+            ),
+        ));
+        
         $this->add(array(
             'name' => 'name',
             'attributes' => array(
@@ -90,14 +97,6 @@ class ProductForm extends Form
             ),
         ));
 
-        $imageOne = new File('image1');
-        $imageOne->setLabel('Image 1');
-        $this->add($imageOne);
-
-        $imageTwo = new File('image2');
-        $imageTwo->setLabel('Image 2');
-        $this->add($imageTwo);
-
         $this->add(array(
             'name' => 'description',
             'attributes' => array(
@@ -107,6 +106,15 @@ class ProductForm extends Form
                 'label' => 'Description',
             ),
         ));
+
+        $imageOne = new File('image1');
+        $imageOne->setLabel('Image 1');
+        $this->add($imageOne);
+
+        $imageTwo = new File('image2');
+        $imageTwo->setLabel('Image 2');
+        $this->add($imageTwo);
+
 
         $this->add(array(
             'name' => 'submit',
