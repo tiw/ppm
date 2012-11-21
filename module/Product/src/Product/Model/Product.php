@@ -30,6 +30,12 @@ class Product
     protected $categoryId;
 
     /**
+     * The id of the author
+     * @var type int
+     */
+    protected $authorId;
+
+    /**
      * Display name
      * @var type string
      */
@@ -52,6 +58,49 @@ class Product
      * @var type string
      */
     protected $description;
+
+    /**
+     * From which country
+     * @var type string
+     */
+    protected $country;
+
+    /**
+     * in which kind of material
+     * @var type string
+     */
+    protected $material;
+
+    /**
+     * when the product is added
+     * @var type date
+     */
+    protected $createdAt;
+
+    public function getCountry()
+    {
+        return $this->country;
+    }
+    public function setCountry($country)
+    {
+        $this->country = $country;
+    }
+    public function getMaterial()
+    {
+        return $this->material;
+    }
+    public function setMaterial($material)
+    {
+        $this->material = $material;
+    }
+    public function getCreatedAt()
+    {
+        return $this->createdAt;
+    }
+    public function setCreatedAt($createdAt)
+    {
+        $this->createdAt = $createdAt;
+    }
 
     public function getId()
     {
@@ -81,6 +130,16 @@ class Product
     public function setCategoryId($categoryId)
     {
         $this->categoryId = $categoryId;
+    }
+
+    public function getAuthorId()
+    {
+        return $this->authorId;
+    }
+
+    public function setAuthorId($authorId)
+    {
+        $this->authorId = $authorId;
     }
 
     public function getDisplayName()

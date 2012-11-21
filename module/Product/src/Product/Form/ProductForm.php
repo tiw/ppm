@@ -98,6 +98,36 @@ class ProductForm extends Form
         ));
 
         $this->add(array(
+            'name' => 'country',
+            'attributes' => array(
+                'type' => 'text',
+            ),
+            'options' => array(
+                'label' => 'Country'
+            ),
+        ));
+
+        $this->add(array(
+            'name' => 'material',
+            'attributes' => array(
+                'type' => 'text',
+            ),
+            'options' => array(
+                'label' => 'Material',
+            ),
+        ));
+
+        $this->add(array(
+            'name' => 'created_at',
+            'attributes' => array(
+                'type' => 'text',
+            ),
+            'options' => array(
+                'label' => 'Created At',
+            ),
+        ));
+
+        $this->add(array(
             'name' => 'description',
             'attributes' => array(
                 'type' => 'textarea',
