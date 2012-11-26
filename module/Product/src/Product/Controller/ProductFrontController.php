@@ -37,6 +37,14 @@ class ProductFrontController extends AbstractActionController
         return $this->productMapper;
     }
 
+    public function filterAction()
+    {
+        $filterName = $this->params()->fromRoute('filter-name', '');
+        $filterValue = $this->params()->fromRoute('filter-value', '');
+        $products = $this->getProductMapper()->getProductByFilter($filterName, $filterValue);
+        return array('products' => $products, 'imageMapper' => $this->getProductImageMapper());
+    }
+
     public function indexAction()
     {
         $this->setLayout();
@@ -51,7 +59,12 @@ class ProductFrontController extends AbstractActionController
         }
         $images = $this->getProductImageMapper()->findByProduct($id);
         $firstImage = $this->getProductImageMapper()->getFirstImage($id);
-        return array('product' => $product, 'images' => $images, 'firstImage' => $firstImage);
+        return array(
+            'product' => $product,
+            'images' => $images,
+            'firstImage' => $firstImage,
+            'imageMapper' => $this->getProductImageMapper()
+        );
     }
 
     public function listAction()

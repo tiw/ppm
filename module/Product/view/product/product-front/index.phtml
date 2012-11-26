@@ -17,9 +17,15 @@ $images = $this->images;
     </div>
     <div class="span6">
         <ul class="no-style">
-            <li>产地：<?php echo $product->getCountry();?></li>
-            <li>材料：<?php echo $product->getMaterial(); ?></li>
-            <li>类别：<?php echo $product->readCategoryName(); ?></li>
+            <li>产地：<a href="<?php echo $this->url('product-front-filter', array('filter-name' => 'country', 'filter-value'=> $product->getCountry()));?>" >
+                <?php echo $product->getCountry();?>
+            </a></li>
+            <li>材料：<a href="<?php echo $this->url('product-front-filter', array('filter-name' => 'material', 'filter-value'=> $product->getMaterial()));?>" >
+                <?php echo $product->getMaterial(); ?>
+            </a></li>
+            <li>类别：<a href="<?php echo $this->url('product-front', array('action' => 'category', 'id'=> $product->getCategoryId()));?>" >
+                <?php echo $product->getCategoryId(); ?>
+            </a></li>
         </ul>
     </div>
 </div>
@@ -36,6 +42,11 @@ $images = $this->images;
     <div class="span12 well-small">
         <?php echo $product->getDescription3(); ?>
     </div>
+</div>
+<div class="product-image-list">
+    <?php foreach($imageMapper->findByProduct($this->product->getId()) as $image) : ?>
+    <img src="<?php echo $image->getImagePath();?>"/>
+    <?php endforeach; ?>
 </div>
 
 

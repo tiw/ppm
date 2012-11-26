@@ -57,6 +57,16 @@ return array(
                     ),
                 ),
             ),
+            'product-front-filter' => array(
+                'type' => 'segment',
+                'options' => array(
+                    'route' => '/products/:filter-name/:filter-value',
+                    'defaults' => array(
+                        'controller' => '\Product\Controller\ProductFront',
+                        'action' => 'filter',
+                    ),
+                ),
+            ),
         ),
     ),
     'service_manager' => array(

@@ -44,6 +44,7 @@ return array(
                 array('route' => 'category', 'roles' => array('user')),
                 array('route' => 'product-front', 'roles' => array('guest', 'user')),
                 array('route' => 'product-image', 'roles' => array('user')),
+                array('route' => 'product-front-filter', 'roles' => array('guest', 'user')),
             ),
         ),
     ),

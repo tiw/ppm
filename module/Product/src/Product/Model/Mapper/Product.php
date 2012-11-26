@@ -21,6 +21,12 @@ class Product extends AbstractDbMapper
         return $this->select($select);
     }
 
+    public function getProductByFilter($filterName, $filterValue)
+    {
+        $select = $this->getSelect()->where(array($filterName => $filterValue));
+        return $this->select($select);
+    }
+
     public function fetchProductByCategory($id)
     {
         return $this->select($this->getSelect()->where(array('category_id' => $id)));
