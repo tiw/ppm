@@ -3,6 +3,7 @@
 namespace Product\Controller;
 
 use Zend\Mvc\Controller\AbstractActionController;
+use Tiddr\Image\SmartResizer;
 
 class ImageController extends AbstractActionController
 {
@@ -56,17 +57,27 @@ class ImageController extends AbstractActionController
     {
         $imageName = 'image';
         if ($_FILES[$imageName]['error'] == 0) {
-
+            $imageDir = __DIR__ . '/../../../../../public/product_images/';
             if (null !== $image && $image->getImagePath()) {
                 $filename = __DIR__ . '/../../../../../public/' . $image->getImagePath();
                 if (file_exists($filename)) {
+                    $info = pathinfo($filename);
                     unlink($filename);
+
+                    $spImage = basename($filename, '.' . $info['extension']) . '_sp.' . $info['extension'];
+                    $lsImage = basename($filename, '.' . $info['extension']) . '_ls.' . $info['extension'];
+                    $thImage = basename($filename, '.' . $info['extension']) . '_th.' . $info['extension'];
+                    unlink($imageDir. '/' . $spImage);
+                    unlink($imageDir. '/' . $lsImage);
+                    unlink($imageDir. '/' . $thImage);
+                    //todo: unlink the other three images
                 }
             }
 
             $suffix = array_pop(explode('.', $_FILES[$imageName]['name']));
             $generatedImageName = "product" . $productId . '_' . $index . '.' . $suffix;
-            $uploadName = __DIR__ . '/../../../../../public/product_images/' . $generatedImageName;
+
+            $uploadName =  $imageDir . $generatedImageName;
             $imagePath = "/product_images/" . $generatedImageName;
             if ($_FILES[$imageName]['size'] == 0) {
                 return;
@@ -84,6 +95,13 @@ class ImageController extends AbstractActionController
                     $image->setImagePath($imagePath);
                     $this->getProductImageMapper()->update($image);
                 }
+                $singleProductImageName = 'product' . $productId . '_' . $index . '_sp.' . $suffix;
+                $listProductImageName = 'product' . $productId . '_' . $index . '_ls.' . $suffix;
+                $thumbProductImageName = 'product' . $productId . '_' . $index . '_th.' . $suffix;
+                SmartResizer::resize($imageDir, $generatedImageName, $generatedImageName, 937, 703);
+                SmartResizer::resize($imageDir, $generatedImageName, $singleProductImageName, 300, 225);
+                SmartResizer::resize($imageDir, $generatedImageName, $listProductImageName, 194, 146);
+                SmartResizer::resize($imageDir, $generatedImageName, $thumbProductImageName, 100, 75);
             }
         }
     }

@@ -4,19 +4,46 @@ $images = $this->images;
 ?>
 
 <h3><?php echo $product->getName(); ?></h3>
-<?php foreach ($images as $image): ?>
-<div class="single-product-image">
-    <img src="<?php echo $image->readSingleProductImage(); ?>" width="300" height="300" />
+<div class="row-fluid">
+    <div class="span6 product-top">
+        <div class="single-product-image">
+            <img src="<?php echo $firstImage->readSingleProductImage(); ?>" width="300px" height="255px"/>
+        </div>
+        <div class="other-images">
+        <?php foreach ($images as $image): ?>
+        <img src="<?php echo $image->readThumbImagePath(); ?>"/>
+        <?php endforeach ?>
+        </div>
+    </div>
+    <div class="span6">
+        <ul class="no-style">
+            <li>产地：<?php echo $product->getCountry();?></li>
+            <li>材料：<?php echo $product->getMaterial(); ?></li>
+            <li>类别：<?php echo $product->readCategoryName(); ?></li>
+        </ul>
+    </div>
 </div>
 
-<?php endforeach ?>
-<div  class="row-fluid">
-    <div class="product-description-left span6">
+<div class="row-fluid">
+    <div class="product-description-left span6 well-small">
         <?php echo $product->getDescription(); ?>
     </div>
-    <div class="product-description-right span6">
-         <?php echo $product->getDescription(); ?>
+    <div class="product-description-right span6 well-small">
+        <?php echo $product->getDescription2(); ?>
+    </div>
+</div>
+<div class="row-fluid">
+    <div class="span12 well-small">
+        <?php echo $product->getDescription3(); ?>
     </div>
 </div>
 
+
 </dl>
+<script type="text/javascript">
+    $(function(){
+       $('.other-images img').click(function(e) {
+           $('.single-product-image img').attr('src', $(e.target).attr('src').replace('_th', '_sp'));
+       });
+    });
+</script>

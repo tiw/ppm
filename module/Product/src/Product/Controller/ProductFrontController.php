@@ -50,7 +50,8 @@ class ProductFrontController extends AbstractActionController
             $this->redirect()->toRoute('product-front', array('action' => 'list'));
         }
         $images = $this->getProductImageMapper()->findByProduct($id);
-        return array('product' => $product, 'images' => $images);
+        $firstImage = $this->getProductImageMapper()->getFirstImage($id);
+        return array('product' => $product, 'images' => $images, 'firstImage' => $firstImage);
     }
 
     public function listAction()

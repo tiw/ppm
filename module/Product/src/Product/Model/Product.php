@@ -59,6 +59,29 @@ class Product
      */
     protected $description;
 
+    protected $description2;
+
+    protected $description3;
+
+    public function setDescription3($description3)
+    {
+        $this->description3 = $description3;
+    }
+
+    public function getDescription3()
+    {
+        return $this->description3;
+    }
+
+    public function setDescription2($description2)
+    {
+        $this->description2 = $description2;
+    }
+
+    public function getDescription2()
+    {
+        return $this->description2;
+    }
     /**
      * From which country
      * @var type string
@@ -76,6 +99,8 @@ class Product
      * @var type date
      */
     protected $createdAt;
+
+
 
     public function getCountry()
     {

@@ -137,12 +137,36 @@ class ProductForm extends Form
             ),
         ));
 
+        $this->add(array(
+            'name' => 'description2',
+            'attributes' => array(
+                'type' => 'textarea',
+            ),
+            'options' => array(
+                'label' => 'Description2'
+            )
+        ));
+
+        $this->add(array(
+            'name' => 'description3',
+            'attributes' => array(
+                'type' => 'textarea',
+            ),
+            'options' => array(
+                'label' => 'Description3'
+            )
+        ));
+
         $imageOne = new File('image1');
         $imageOne->setLabel('Image 1');
         $this->add($imageOne);
 
         $imageTwo = new File('image2');
         $imageTwo->setLabel('Image 2');
+        $this->add($imageTwo);
+
+        $imageTwo = new File('image3');
+        $imageTwo->setLabel('Image 3');
         $this->add($imageTwo);
 
 
