@@ -10,6 +10,7 @@ class ProductFrontController extends AbstractActionController
 
     protected $productMapper;
     protected $productImageMapper;
+    protected $categoryMapper;
 
     protected function setLayout()
     {
@@ -18,7 +19,6 @@ class ProductFrontController extends AbstractActionController
 
     public function getProductImageMapper()
     {
-        $this->setLayout();
         if (!$this->productImageMapper) {
             $sm = $this->getServiceLocator();
             $this->productImageMapper = $sm->get('Product\Model\Mapper\Image');
@@ -26,9 +26,16 @@ class ProductFrontController extends AbstractActionController
         return $this->productImageMapper;
     }
 
+    public function getCategoryMapper()
+    {
+        if (!$this->categoryMapper) {
+            $sm = $this->getServiceLocator();
+            $this->categoryMapper = $sm->get('Category\Model\Mapper\Category');
+        }
+        return $this->categoryMapper;
+    }
     public function getProductMapper()
     {
-        $this->setLayout();
 
         if (!$this->productMapper) {
             $sm = $this->getServiceLocator();
@@ -63,7 +70,8 @@ class ProductFrontController extends AbstractActionController
             'product' => $product,
             'images' => $images,
             'firstImage' => $firstImage,
-            'imageMapper' => $this->getProductImageMapper()
+            'imageMapper' => $this->getProductImageMapper(),
+            'categoryName' => $this->getCategoryMapper()->findById($product->getCategoryId())->getName(),
         );
     }
 

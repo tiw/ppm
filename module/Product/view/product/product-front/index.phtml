@@ -24,7 +24,7 @@ $images = $this->images;
                 <?php echo $product->getMaterial(); ?>
             </a></li>
             <li>类别：<a href="<?php echo $this->url('product-front', array('action' => 'category', 'id'=> $product->getCategoryId()));?>" >
-                <?php echo $product->getCategoryId(); ?>
+                <?php echo $this->categoryName; ?>
             </a></li>
         </ul>
     </div>
