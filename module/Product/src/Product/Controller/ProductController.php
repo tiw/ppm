@@ -114,6 +114,9 @@ class ProductController extends AbstractActionController
         $form = $this->getServiceLocator()->get('ProductForm');
         $form->bind($product);
         $form->get('submit')->setValue('Edit');
+        $form->remove('image1');
+        $form->remove('image2');
+        $form->remove('image3');
 
         $request = $this->getRequest();
         if ($request->isPost()) {
