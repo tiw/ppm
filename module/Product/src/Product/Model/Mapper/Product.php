@@ -27,6 +27,14 @@ class Product extends AbstractDbMapper
         return $this->select($select);
     }
 
+    public function getProductByBetweenFilter($filterName, $minValue, $maxValue)
+    {
+        $where = new \Zend\Db\Sql\Where();
+        $where->between($filterName, $minValue, $maxValue);
+        $select = $this->getSelect()->where($where);
+        return $this->select($select);
+    }
+
     public function fetchProductByCategory($id)
     {
         return $this->select($this->getSelect()->where(array('category_id' => $id)));

@@ -83,6 +83,9 @@ class Module extends AbstractModule
                     $mapper->setEntityPrototype(new Image());
                     $mapper->setHydrator(new ImageHydrator());
                     return $mapper;
+                },
+                'SeasonService' => function($sm) {
+                    return new \Tiddr\Date\ChineseSeason();
                 }
             ),
         );

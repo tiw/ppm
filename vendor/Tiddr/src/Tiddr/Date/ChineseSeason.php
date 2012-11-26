@@ -70,6 +70,39 @@ class ChineseSeason
 
     }
 
+    public function seasonStart($year, $season)
+    {
+        switch($season) {
+            case self::CHUN:
+                return $year . '-03-01';
+            case self::XIA:
+                return $year . '-06-01';
+            case self::QIU:
+                return $year . '-09-01';
+            case self::DONG:
+                $year = $year - 1;
+                return $year . '-12-01';
+            default:
+                throw new Exception('there are just four seasons');
+        }
+    }
+
+    public function seasonEnd($year, $season)
+    {
+        switch($season) {
+            case self::CHUN:
+                return $year . '-05-31';
+            case self::XIA:
+                return $year . '-08-31';
+            case self::QIU:
+                return $year . '-11-30';
+            case self::DONG:
+                return $year . '-02-29';
+            default:
+                throw new Exception('there are just four seasons');
+        }
+
+    }
     private function _stepBackward($start, $steps)
     {
         $backwardSeason = array(self::CHUN, self::DONG, self::QIU, self::XIA);

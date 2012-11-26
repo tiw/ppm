@@ -11,6 +11,7 @@ class ProductFrontController extends AbstractActionController
     protected $productMapper;
     protected $productImageMapper;
     protected $categoryMapper;
+    protected $chineseSeason;
 
     protected function setLayout()
     {
@@ -24,6 +25,15 @@ class ProductFrontController extends AbstractActionController
             $this->productImageMapper = $sm->get('Product\Model\Mapper\Image');
         }
         return $this->productImageMapper;
+    }
+
+    public function getSeasonService()
+    {
+        if (!$this->chineseSeason) {
+            $sm = $this->getServiceLocator();
+            $this->chineseSeason = $sm->get('SeasonService');
+        }
+        return $this->chineseSeason;
     }
 
     public function getCategoryMapper()
@@ -46,9 +56,17 @@ class ProductFrontController extends AbstractActionController
 
     public function filterAction()
     {
+        $this->setLayout();
         $filterName = $this->params()->fromRoute('filter-name', '');
         $filterValue = $this->params()->fromRoute('filter-value', '');
-        $products = $this->getProductMapper()->getProductByFilter($filterName, $filterValue);
+        if ($filterName === 'season') {
+            list($year, $season) = explode('-', $filterValue);
+            $min = $this->getSeasonService()->seasonStart($year, $season);
+            $max = $this->getSeasonService()->seasonEnd($year, $season);
+            $products = $this->getProductMapper()->getProductByBetweenFilter('created_at', $min, $max);
+        } else {
+            $products = $this->getProductMapper()->getProductByFilter($filterName, $filterValue);
+        }
         return array('products' => $products, 'imageMapper' => $this->getProductImageMapper());
     }
 
