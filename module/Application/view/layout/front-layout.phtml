@@ -38,9 +38,16 @@
                             <br/>
                             <br/>
                             <ul class="color-animate-nav">
-                                <li><a href="<?php echo $this->url('product-front', array('action' => 'category', 'id' => 7)); ?>">头饰</a></li>
-                                <li><a href="#">项链</a></li>
-                                <li><a href="#">戒指</a></li>
+                                <?php
+                                    $cs  = new \Tiddr\Date\ChineseSeason();
+                                    foreach (range(0,3) as $number) {
+                                        $r = $cs->getLastSeason($number);
+                                        $url = $this->url('product-front-filter', array('filter-name' => 'season', 'filter-value' => $r['year'] . '-' . $r['season']));
+                                        echo '<li><a href="' . $url . '">' . $r['year'] . " " . $cs->translate($r['season']) . "</a></li>";
+                                    }
+                                ?>
+                                <li><a href="<?php echo $this->url('product-front', array('action' => 'category', 'id' => 7)); ?>">Archived</a></li>
+                                <li><a href="#">All</a></li>
                             </ul>
                             <!--Sidebar content-->
                         </div>
