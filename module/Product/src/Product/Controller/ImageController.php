@@ -24,6 +24,72 @@ class ImageController extends AbstractActionController
 
     }
 
+    /**
+     * add a new image
+     */
+    public function addAction()
+    {
+        $id = (int) $this->params()->fromRoute('id', 0);
+        if (!$id) {
+            $this->redirect()->toRoute('product-image');
+        }
+
+        $form = $this->getServiceLocator()->get('ImageForm');
+        $form->get('submit')->setValue('Add');
+
+        $request = $this->getRequest();
+        if ($request->isPost()) {
+            $form->setData($request->getPost());
+            if ($form->isValid()) {
+                $imageName = $this->_insertFile($id);
+                $data = $form->getData();
+                $data->setProductId($id);
+                $data->setImagePath('/product_images/' . $imageName);
+                $image = $this->getProductImageMapper()->insert($data);
+            }
+            $this->redirect()->toRoute('product', array('action' => 'edit', 'id' => $id));
+        }
+
+        return array('form' => $form);
+    }
+
+    /**
+     * insert a image and generate thumbs.
+     * returns the image path
+     */
+    private function _insertFile($productId)
+    {
+        $imageName = 'image';
+        if ($_FILES[$imageName]['error'] === 0) {
+            $imageDir = __DIR__ . '/../../../../../public/product_images/';
+            $suffix = array_pop(explode('.', $_FILES[$imageName]['name']));
+            $sequence = substr(md5(time()), -5);
+            $baseFileName = 'product' . $productId . '_' . $sequence;
+            $generatedImageName = $baseFileName . '.' . $suffix;
+            $singleProductImageName = $baseFileName . '_sp.' . $suffix;
+            $listProductImageName = $baseFileName . '_ls.' . $suffix;
+            $thumbProductImageName = $baseFileName . '_th.' . $suffix;
+
+            if ($_FILES['image']['size'] == 0) {
+                return ;
+            }
+
+            $result = move_uploaded_file($_FILES['image']['tmp_name'], $imageDir . $generatedImageName);
+
+
+            if ($result) {
+                SmartResizer::resize($imageDir, $generatedImageName, $generatedImageName, 937, 703);
+                SmartResizer::resize($imageDir, $generatedImageName, $singleProductImageName, 300, 225);
+                SmartResizer::resize($imageDir, $generatedImageName, $listProductImageName, 194, 146);
+                SmartResizer::resize($imageDir, $generatedImageName, $thumbProductImageName, 100, 75);
+
+                return $generatedImageName;
+            } else {
+                throw new \Exception($result);
+            }
+        }
+    }
+
     public function editAction()
     {
         $id = (int) $this->params()->fromRoute('id', 0);
@@ -52,6 +118,7 @@ class ImageController extends AbstractActionController
 
         return array('form' => $form, 'image' => $image);
     }
+
 
     private function _saveFile($index, $productId, $image = null)
     {
