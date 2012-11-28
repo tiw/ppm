@@ -5,3 +5,13 @@
  * Time: 上午10:04
  * copyright 2012 tiddr.de
  */
+$form = $this->form;
+$form->prepare();
+echo $this->formTwb($form);
+if ($this->imagePath) :
+?>
+    <h2>Artisan Thumb</h2>
+        <img src="<?php echo '/person_images/' . $this->imagePath; ?>"/>
+<?php
+endif;
+?>

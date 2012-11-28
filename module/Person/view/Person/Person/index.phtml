@@ -5,4 +5,33 @@
  * Time: 上午9:49
  * copyright 2012 tiddr.de
  */
-echo $this->hello;
+$title = 'Person';
+$this->headTitle($title);
+?>
+<h1><?php echo $this->escapeHtml($title); ?></h1>
+<p>
+    <a class="btn" href="<?php echo $this->url('person', array('action' => 'add')); ?>">Add</a>
+</p>
+<table class="table table-striped">
+    <tr>
+        <th><?php echo $this->translate('Person id'); ?></th>
+        <th><?php echo $this->translate('Name'); ?></th>
+        <th>&nbsp;</th>
+    </tr>
+    <?php foreach ($this->persons as $person) : ?>
+    <tr>
+        <td><?php echo $this->escapeHtml($person->getId()); ?></td>
+        <td><?php echo $this->escapeHtml($person->getName()); ?></td>
+        <td>
+            <a class="btn" href="<?php echo $this->url(
+                'person', array('action' => 'edit', 'id' => $person->getId()));
+                ?>"> <?php echo $this->translate('Edit'); ?> </a>
+            <a class="btn" href="<?php echo $this->url(
+                'person', array('action' => 'delete', 'id' => $person->getId()));
+                ?>"> <?php echo $this->translate('Delete', 'todo'); ?></a>
+        </td>
+
+    </tr>
+    <?php endforeach; ?>
+</table>
+
