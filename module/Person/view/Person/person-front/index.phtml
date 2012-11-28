@@ -17,7 +17,7 @@
         </div>
     </div>
 </div>
-<h2> Products of the Artisan</h2>
+<h2> Products of <?php echo $this->person->getName(); ?></h2>
 <?php
 echo $this->partial('partial/productlist', array(
     'products' => $this->products, 'imageMapper' => $this->imageMapper,
