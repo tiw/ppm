@@ -67,6 +67,7 @@ class PersonFrontController extends AbstractActionController
             'person' => $person,
             'products' => $personsProduct,
             'imageMapper' => $this->getImageMapper(),
+            'personMapper' => $this->getPersonMapper(),
         );
     }
 

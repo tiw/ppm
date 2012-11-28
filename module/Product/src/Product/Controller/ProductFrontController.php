@@ -76,7 +76,11 @@ class ProductFrontController extends AbstractActionController
         } else {
             $products = $this->getProductMapper()->getProductByFilter($filterName, $filterValue);
         }
-        return array('products' => $products, 'imageMapper' => $this->getProductImageMapper());
+        return array(
+            'products' => $products,
+            'imageMapper' => $this->getProductImageMapper(),
+            'personMapper' => $this->getPersonMapper()
+        );
     }
 
     public function indexAction()
@@ -120,7 +124,11 @@ class ProductFrontController extends AbstractActionController
             $this->redirect()->toRoute('product-front', array('action' => 'list'));
         }
         $products = $this->getProductMapper()->fetchProductByCategory($id);
-        return array('products' => $products, 'imageMapper' => $this->getProductImageMapper());
+        return array(
+            'products' => $products,
+            'imageMapper' => $this->getProductImageMapper(),
+            'personMapper' => $this->getPersonMapper(),
+        );
     }
 
 }

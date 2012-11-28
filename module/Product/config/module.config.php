@@ -14,6 +14,9 @@ return array(
             'category' => __DIR__ . '/../view',
 //            'category' => __DIR__ . '/../view',
         ),
+        'template_map' => array(
+            'partial/productlist' => __DIR__ . '/../view/partial/productlist.phtml',
+        )
     ),
     'router' => array(
         'routes' => array(
