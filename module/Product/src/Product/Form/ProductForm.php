@@ -19,19 +19,47 @@ use Zend\Form\Element\File;
 class ProductForm extends Form
 {
 
+    /**
+     * @var \Category\Model\Mapper\Category
+     */
     protected $categoryMapper = null;
+
+    /**
+     * @var \Person\Model\Mapper\Person
+     */
+    protected $personMapper = null;
 
     public function setCategoryMapper($mapper)
     {
         $this->categoryMapper = $mapper;
     }
 
+    /**
+     * @return \Category\Model\Mapper\Category|null
+     * @throws \Exception
+     */
     public function getCategoryMapper()
     {
         if (!$this->categoryMapper) {
-            throw new Exception('Category Mapper is not set');
+            throw new \Exception('Category Mapper is not set');
         }
         return $this->categoryMapper;
+    }
+
+    public function setPersonMapper($personMapper)
+    {
+        $this->personMapper = $personMapper;
+    }
+    /**
+     * @return null|\Person\Model\Mapper\Person
+     * @throws \Exception
+     */
+    public function getPersonMapper()
+    {
+        if (!$this->personMapper) {
+            throw new \Exception('Person Mapper is not set');
+        }
+        return $this->personMapper;
     }
 
     public function __construct()
@@ -56,6 +84,8 @@ class ProductForm extends Form
             $categoryOptions[$category->getId()] = $category->getName();
         }
 
+
+
         $this->add(array(
             'name'          => 'category_id',
             'type'          => 'Zend\Form\Element\Select',
@@ -66,7 +96,21 @@ class ProductForm extends Form
                 'value_options'     => $categoryOptions,
             ),
         ));
-        
+
+        $personOptions = array();
+        $allPersons = $this->getPersonMapper()->fetchAll();
+        foreach ($allPersons as $aPerson) {
+            $personOptions[$aPerson->getId()] = $aPerson->getName();
+        }
+        $this->add(array(
+            'name' => 'author_id',
+            'type' => 'Zend\Form\Element\Select',
+            'options' => array(
+                'label' => 'Author',
+                'value_options' => $personOptions,
+            )
+        ));
+
         $this->add(array(
             'name' => 'name',
             'attributes' => array(

@@ -109,7 +109,7 @@ class PersonController extends AbstractActionController
 
             return $generatedImageName;
         } else {
-            throw new \Exception('can not save thumb');
+            return false;
         }
 
     }
