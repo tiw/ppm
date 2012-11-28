@@ -105,7 +105,7 @@ class PersonController extends AbstractActionController
                 return false;
             }
             $result = move_uploaded_file($_FILES['image']['tmp_name'], $uploadName);
-            SmartResizer::resize($imageDir, $generatedImageName, $generatedImageName, 200, 300);
+            SmartResizer::resize($imageDir, $generatedImageName, $generatedImageName, 140, 210);
 
             return $generatedImageName;
         } else {
