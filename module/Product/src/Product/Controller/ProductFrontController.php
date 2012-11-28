@@ -12,6 +12,15 @@ class ProductFrontController extends AbstractActionController
     protected $productImageMapper;
     protected $categoryMapper;
     protected $chineseSeason;
+    protected $personMapper;
+
+    public function getPersonMapper()
+    {
+        if (!$this->personMapper) {
+            $this->personMapper = $this->getServiceLocator()->get('PersonMapper');
+        }
+        return $this->personMapper;
+    }
 
     protected function setLayout()
     {
@@ -90,6 +99,7 @@ class ProductFrontController extends AbstractActionController
             'firstImage' => $firstImage,
             'imageMapper' => $this->getProductImageMapper(),
             'categoryName' => $this->getCategoryMapper()->findById($product->getCategoryId())->getName(),
+            'author' => $this->getPersonMapper()->findById($product->getAuthorId()),
         );
     }
 

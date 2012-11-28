@@ -26,6 +26,9 @@ $images = $this->images;
             <li>类别：<a href="<?php echo $this->url('product-front', array('action' => 'category', 'id'=> $product->getCategoryId()));?>" >
                 <?php echo $this->categoryName; ?>
             </a></li>
+            <li>作者：<a href="<?php echo $this->url('person-front', array('action' => 'index', 'id' => $this->author->getId()));?>">
+                <?php echo $this->author->getName(); ?>
+            </a></li>
         </ul>
     </div>
 </div>

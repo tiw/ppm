@@ -8,7 +8,8 @@
 return array(
     'controllers' => array(
         'invokables' => array(
-            'Person\Controller\Person' => 'Person\Controller\PersonController'
+            'Person\Controller\Person' => 'Person\Controller\PersonController',
+            'Person\Controller\PersonFront' => 'Person\Controller\PersonFrontController',
         ),
     ),
     'view_manager' => array(
@@ -25,6 +26,16 @@ return array(
                     'defaults' => array(
                         'controller' => 'Person\Controller\Person',
                         'action' => 'index',
+                    ),
+                ),
+            ),
+            'person-front' => array(
+                'type' => 'segment',
+                'options' => array(
+                    'route' => '/person[/:action][/:id]',
+                    'defaults' => array(
+                        'controller' => 'Person\Controller\PersonFront',
+                        'action' => 'list',
                     ),
                 ),
             ),
