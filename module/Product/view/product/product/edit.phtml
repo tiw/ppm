@@ -22,7 +22,7 @@ echo $this->formTwb($form);
 
 ?>
 <h2> Add new Image </h2>
-<a href="<?php echo $this->url('product-image', array('action' => 'add', 'id' => $this->id)); ?>">Add </a>
+<a class="btn" href="<?php echo $this->url('product-image', array('action' => 'add', 'id' => $this->id)); ?>">Add </a>
 <h2>Edit images</h2>
 <ul>
     <?php foreach($images as $image) :?>
