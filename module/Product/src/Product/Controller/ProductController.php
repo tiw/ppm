@@ -37,7 +37,10 @@ class ProductController extends AbstractActionController
 
     public function indexAction()
     {
-        return array('products' => $this->getProductMapper()->fetchAll());
+        $products = $this->getProductMapper()->fetchAll();
+        //var_dump($this->params()->fromRoute('page'));
+        $products->setCurrentPageNumber($this->params()->fromRoute('page'));
+        return array('products' => $products);
     }
 
     public function addAction()

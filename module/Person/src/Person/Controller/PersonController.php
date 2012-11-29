@@ -18,6 +18,7 @@ class PersonController extends AbstractActionController
     public function indexAction()
     {
         $persons = $this->getPersonMapper()->fetchAll();
+        $persons->setCurrentPageNumber($this->params()->fromRoute('page'));
         return array('persons' => $persons);
     }
 

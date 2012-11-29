@@ -28,3 +28,5 @@ $this->headTitle($title);
 
     <?php endforeach ?>
 </table>
+<?php echo $this->paginationControl($categories, 'Sliding', 'pagination_control', array('route' => 'category-list'));
+

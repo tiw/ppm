@@ -34,3 +34,4 @@ $this->headTitle($title);
         </tr>
 <?php endforeach; ?>
 </table>
+    <?php echo $this->paginationControl($products, 'Sliding', 'pagination_control', array('route' => 'product-list'));

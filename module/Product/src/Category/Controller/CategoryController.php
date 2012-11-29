@@ -25,7 +25,9 @@ class CategoryController extends AbstractActionController
 
     public function indexAction()
     {
-        return array('categories' => $this->getCategoryMapper()->fetchAll());
+        $categories = $this->getCategoryMapper()->fetchAll();
+        $categories->setCurrentPageNumber($this->params()->fromRoute('page'));
+        return array('categories' => $categories);
     }
 
     public function addAction()

@@ -34,4 +34,5 @@ $this->headTitle($title);
     </tr>
     <?php endforeach; ?>
 </table>
+<?php echo $this->paginationControl($this->persons, 'Sliding', 'pagination_control', array('route' => 'person-list'));
 

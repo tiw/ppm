@@ -16,6 +16,7 @@ return array(
         ),
         'template_map' => array(
             'partial/productlist' => __DIR__ . '/../view/partial/productlist.phtml',
+            'pagination_control' => __DIR__ . '/../view/partial/pagination_control.phtml',
         )
     ),
     'router' => array(
@@ -33,9 +34,39 @@ return array(
             'product' => array(
                 'type' => 'segment',
                 'options' => array(
-                    'route' => '/admin/product[/:action][/:id]',
+                    'route' => '/admin/product[/:action][/:id][/page/:page]',
                     'defaults' => array(
                         'controller' => 'Product\Controller\Product',
+                        'action' => 'index',
+                    ),
+                ),
+            ),
+            'product-list' => array(
+                'type' => 'segment',
+                'options' => array(
+                    'route' => '/admin/products[/page/:page]',
+                    'defaults' => array(
+                        'controller' => 'Product\Controller\Product',
+                        'action' => 'index',
+                    ),
+                ),
+            ),
+            'category-list' => array(
+                'type' => 'segment',
+                'options' => array(
+                    'route' => '/admin/categories[/page/:page]',
+                    'defaults' => array(
+                        'controller' => 'Category\Controller\Category',
+                        'action' => 'index',
+                    ),
+                ),
+            ),
+            'person-list' => array(
+                'type' => 'segment',
+                'options' => array(
+                    'route' => '/admin/persons[/page/:page]',
+                    'defaults' => array(
+                        'controller' => 'Person\Controller\Person',
                         'action' => 'index',
                     ),
                 ),
