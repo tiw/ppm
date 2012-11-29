@@ -4,31 +4,29 @@ $first = true;
 ?>
 
 
-<!-- slide {{{ -->
-<div class="row-fluid">
-    <div id="pro-slide" class="carousel slide">
-        <div class="carousel-inner">
-            <?php foreach ($images as $image) : ?>
-                <div class="<?php echo $first ? 'active' : ''; ?> item">
-                    <img alt="some picture here" src="<?php echo $image->getImagePath(); ?>"/>
-                    <div class="carousel-caption">
-                        <p>
-                            <?php echo $image->getDescription(); ?>
-                        </p>
-                    </div>
-                </div>
-                <?php $first = false; ?>
-            <?php endforeach; ?>
-        </div>
-        <a class="carousel-control left" href="#pro-slide" data-slide="prev">&lsaquo;</a>
-        <a class="carousel-control right" href="#pro-slide" data-slide="next">&rsaquo;</a>
-    </div>
-</div>
+    <ul id="product-slider">
+
+        <?php foreach ($images as $image) : ?>
+        <li><img src="<?php echo $image->getImagePath();?>"/></li>
+        <?php endforeach; ?>
+
+    </ul>
 <!-- }}}-->
 <!--Body content-->
 
 <script type="text/javascript" charset="utf-8">
     $(function() {
-        $('.carousel').carousel();
+        $('#product-slider').pikachoose({
+            text: { play: "PPP", stop: "SSS", previous: "前进", next: "后退", loading: "Loading" },
+            thumbOpacity: 0.1,
+            hoverPause: true,
+            fadeThumbsIn: true,
+            carousel: true,
+            carouselOptions: {
+                visible: 5,
+                wrap: 'circular'
+                //visible: 6
+            }
+        });
     });
 </script>

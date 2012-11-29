@@ -13,17 +13,30 @@
             ->prependStylesheet($this->basePath() . '/css/bootstrap-responsive.min.css')
             ->prependStylesheet($this->basePath() . '/css/front.css')
             ->prependStylesheet($this->basePath() . '/css/style.css')
+            ->prependStylesheet($this->basePath() . '/assets/pikachoose-4.5.0/styles/bottom.css')
             ->prependStylesheet($this->basePath() . '/css/bootstrap.min.css')
         ?>
 
         <!-- Scripts -->
         <?php
         echo $this->headScript()->prependFile($this->basePath() . '/js/html5.js', 'text/javascript', array('conditional' => 'lt IE 9',))
+            ->prependFile($this->basePath() . '/assets/pikachoose-4.5.0/lib/jquery.pikachoose.full.js')
+            ->prependFile($this->basePath() . '/assets/pikachoose-4.5.0/lib/jquery.jcarousel.min.js')
             ->prependFile($this->basePath() . '/js/jquery.animate-colors-min.js')
             ->prependFile($this->basePath() . '/js/bootstrap.min.js')
             ->prependFile($this->basePath() . '/js/jquery.min.js')
         ?>
 
+        <script type="text/javascript" charset="utf-8">
+            $(function(){
+                $('ul.color-animate-nav li').mouseover(function(event){
+                    $(event.target).animate({color: '#808080'}, 400);
+                });
+                $('ul.color-animate-nav li').mouseout(function(event){
+                    $(event.target).animate({color: '#e5e5e5'}, 400);
+                });
+            });
+        </script>
     </head>
     <body>
 
@@ -70,15 +83,5 @@
             </footer>
         </div> <!-- /container -->
         <?php echo $this->inlineScript() ?>
-        <script type="text/javascript" charset="utf-8">
-            $(function(){
-               $('ul.color-animate-nav li').mouseover(function(event){
-                  $(event.target).animate({color: '#808080'}, 400);
-               });
-               $('ul.color-animate-nav li').mouseout(function(event){
-                  $(event.target).animate({color: '#e5e5e5'}, 400);
-               });
-            });
-        </script>
     </body>
 </html>
