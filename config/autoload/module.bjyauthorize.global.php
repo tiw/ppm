@@ -50,6 +50,7 @@ return array(
                 array('route' => 'product-list', 'roles' => array('user')),
                 array('route' => 'category-list', 'roles' => array('user')),
                 array('route' => 'person-list', 'roles' => array('user')),
+                array('route' => 'product-rest', 'roles' => array('user')),
             ),
         ),
     ),

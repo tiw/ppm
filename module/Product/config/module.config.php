@@ -6,6 +6,7 @@ return array(
             'Product\Controller\Product' => 'Product\Controller\ProductController',
             'Category\Controller\Category' => 'Category\Controller\CategoryController',
             'Product\Controller\ProductFront' => 'Product\Controller\ProductFrontController',
+            'Product\Controller\ProductRest' => 'Product\Controller\ProductRestController',
             'Product\Controller\Image' => 'Product\Controller\ImageController',
         ),
     ),
@@ -17,7 +18,10 @@ return array(
         'template_map' => array(
             'partial/productlist' => __DIR__ . '/../view/partial/productlist.phtml',
             'pagination_control' => __DIR__ . '/../view/partial/pagination_control.phtml',
-        )
+        ),
+        'strategies' => array(
+            'ViewJsonStrategy',
+        ),
     ),
     'router' => array(
         'routes' => array(
@@ -101,6 +105,15 @@ return array(
                     ),
                 ),
             ),
+            'product-rest' => array(
+                'type' => 'segment',
+                'options' => array(
+                    'route' => '/product-rest[/:id]',
+                    'defaults' => array(
+                        'controller' => '\Product\Controller\ProductRest',
+                    ),
+                ),
+            )
         ),
     ),
     'service_manager' => array(
