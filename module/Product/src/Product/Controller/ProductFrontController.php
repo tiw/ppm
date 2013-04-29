@@ -24,7 +24,7 @@ class ProductFrontController extends AbstractActionController
 
     protected function setLayout()
     {
-        $this->layout('layout/front-layout');
+        $this->layout('layout/category-layout');
     }
 
     public function getProductImageMapper()
