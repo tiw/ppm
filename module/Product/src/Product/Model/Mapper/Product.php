@@ -17,9 +17,11 @@ class Product extends Base
 
     protected $tableName = 'product';
 
-    public function fetchAll()
+    public function fetchAll($select = null)
     {
-        $select = $this->getSelect();
+        if (null === $select) {
+            $select = $this->getSelect();
+        }
         $select->join(array('c' => 'category'), 'category_id = c.id', array('category_name' => 'name'));
         return parent::fetchAll($select);
     }

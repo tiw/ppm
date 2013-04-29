@@ -72,7 +72,8 @@ class ProductController extends AbstractActionController
     {
         $imageName = 'image' . $index;
         if ($_FILES[$imageName]['error'] == 0) {
-            $suffix = array_pop(explode('.', $_FILES[$imageName]['name']));
+            $f = explode('.', $_FILES[$imageName]['name']);
+            $suffix = array_pop($f);
             $generatedImageName = 'product' . $productId . '_' . $index . '.' . $suffix;
             $singleProductImageName = 'product' . $productId . '_' . $index . '_sp.' . $suffix;
             $listProductImageName = 'product' . $productId . '_' . $index . '_ls.' . $suffix;
