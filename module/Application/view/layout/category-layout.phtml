@@ -1,0 +1,46 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Tsingzo</title>
+    <link rel="stylesheet" type="text/css" href="/css/main.css">
+</head>
+<body>
+<div class="container">
+    <div class="header-ext">
+        <div class="cate fl">
+            <img src="/images/h4.png" witdh="180" height="84" alt="">
+        </div>
+
+        <div class="logo fr">
+            <img src="/images/logo-white.png" width="100" alt="">
+        </div>
+        <div class="search fr">
+            <input type="text" class="text">
+            <input type="button" class="btn" value="搜索">
+        </div>
+    </div>
+    <div class="main">
+        <div class="cate-listing">
+            <?php echo $this->content; ?>
+        </div>
+    </div>
+    <div class="sub">
+        <div class="sub-menu">
+            <h3>
+                何为卿作
+                <span>About us</span>
+            </h3>
+            <ul>
+                <li>
+                    <a href="#">
+                        相关链接
+                        <span>Related links</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+</body>
+</html>
