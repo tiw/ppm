@@ -14,8 +14,49 @@ use Zend\View\Model\ViewModel;
 
 class IndexController extends AbstractActionController
 {
+    protected function setLayout()
+    {
+        $this->layout('layout/index-layout');
+    }
     public function indexAction()
     {
-        return new ViewModel();
+        $this->setLayout();
+
+
+        $currentMonth = date('Y-m');
+
+        $countries = array(
+            'France', 'Italy', 'Greece', 'Spain', 'Others regions'
+        );
+        $materials = array(
+            'Metals', 'Gem/stone', 'Wood/bamboo', 'Glass', 'Textile'
+        );
+
+        $categories = array(
+            'Necklaces', 'Earrings', 'Rings', 'Bracelets'
+        );
+
+        $decorations = array(
+            'Display', 'Dangle'
+        );
+
+        $utensils = array(
+            'Stationery', 'Tools'
+        );
+
+        $vintageItems = array(
+            'Finery', 'Accessories'
+        );
+
+        return array(
+            'name' => 'Ting',
+            'currentMonth' => $currentMonth,
+            'countries' => $countries,
+            'materials' => $materials,
+            'categories' => $categories,
+            'decorations' => $decorations,
+            'utensils' => $utensils,
+            'vintageItems' => $vintageItems
+        );
     }
 }

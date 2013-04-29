@@ -1,3 +1,240 @@
-<div class="hero-unit">
-    <h1><?php echo $this->translate('welcome to PPM'); ?></h1>
+<div class="header">
+<div class="logo">
+    <a href="#">
+        <img src="images/logo.png" alt="tsingzo">
+    </a>
+    <div class="search">
+        <input type="text" class="text">
+        <input type="button" class="btn" value="搜索">
+    </div>
+</div>
+<div class="menu">
+<ul>
+<li class="item-parent">
+    <a class="item about" href="#">典</a>
+    <ul>
+        <li>
+            <a href="#">
+                何为卿作
+                <span>About us</span>
+            </a>
+        </li>
+        <li>
+            <a href="#">
+                相关链接
+                <span>Related links</span>
+            </a>
+        </li>
+    </ul>
+</li>
+<li class="item-parent">
+    <a class="item new" href="products/season">新</a>
+    <ul>
+        <li>
+            <a href="products/season">
+                全部新品
+                <span>All new items</span>
+            </a>
+        </li>
+        <li>
+            <a href="<?php echo 'products/season/' . $currentMonth; ?>">
+                <?php echo $currentMonth; ?>
+                <span><?php echo $this->translate($currentMonth); ?></span>
+            </a>
+        </li>
+        <li>
+            <a href="#">
+                其它作品
+                <span>Other</span>
+            </a>
+        </li>
+    </ul>
+</li>
+<li class="item-parent">
+    <a class="item origins" href="products/country">域</a>
+    <ul>
+        <li>
+            <a href="products/country">
+                全部产品
+                <span>All origins</span>
+            </a>
+        </li>
+        <?php foreach ($countries as $country): ?>
+        <li>
+            <a href="<?php echo 'products/country/' . urlencode($country);?>">
+                <?php echo $this->translate($country); ?>
+                <span><?php echo $country; ?></span>
+            </a>
+        </li>
+        <?php endforeach; ?>
+    </ul>
+</li>
+<li class="item-parent">
+    <a class="item materials" href="product/material">材</a>
+    <ul>
+        <li>
+            <a href="products/material">
+                全部材质
+                <span>All materials</span>
+            </a>
+        </li>
+        <?php foreach($materials as $material): ?>
+        <li>
+            <a href="<?php echo 'products/material/' . urlencode($material); ?>">
+                <?php echo $this->translate($material);?>
+                <span><?php echo $material?></span>
+            </a>
+        </li>
+        <?php endforeach; ?>
+        <li>
+            <a href="#">
+                其他
+                <span>Other materials</span>
+            </a>
+        </li>
+    </ul>
+</li>
+<li class="item-parent">
+    <a class="item omaments" href="product/category">饰</a>
+    <ul>
+        <li>
+            <a href="product/category">
+                全部饰品
+                <span>All omaments</span>
+            </a>
+        </li>
+        <?php foreach($categories as $category): ?>
+        <li>
+            <a href="<?php echo 'product/category/' . $category;?>">
+                <?php echo $this->translate($category);?>
+                <span><?php echo $category; ?></span>
+            </a>
+        </li>
+        <?php endforeach;?>
+        <li>
+            <a href="#">
+                其他
+                <span>Others</span>
+            </a>
+        </li>
+    </ul>
+</li>
+<li class="item-parent">
+    <a class="item decrations" href="products/decorations">居</a>
+    <ul>
+        <li>
+            <a href="products/decorations">
+                全部家居
+                <span>All decorations</span>
+            </a>
+        </li>
+        <?php foreach ($decorations as $decoration): ?>
+        <li>
+            <a href="products/decorations/<?php echo urlencode($decoration);?>">
+                <?php echo $this->translate($decoration); ?>
+                <span><?php echo $decoration;?></span>
+            </a>
+        </li>
+        <?php endforeach;?>
+        <li>
+            <a href="#">
+                其他
+                <span>Others</span>
+            </a>
+        </li>
+    </ul>
+</li>
+<li class="item-parent">
+    <a class="item utensils" href="products/utensils">具</a>
+    <ul>
+        <li>
+            <a href="products/utensils">
+                全部用具
+                <span>All utensils</span>
+            </a>
+        </li>
+        <?php foreach($utensils as $utensil): ?>
+        <li>
+            <a href="products/utensils/<?php echo urlencode($utensil);?>">
+                <?php echo $this->translate($utensil);?>
+                文具
+                <span><?php echo $utensil; ?></span>
+            </a>
+        </li>
+        <?php endforeach; ?>
+        <li>
+            <a href="#">
+                其他
+                <span>Other utensils</span>
+            </a>
+        </li>
+    </ul>
+</li>
+<li class="item-parent">
+    <a class="item vintage" href="products/vintage-items">旧</a>
+    <ul>
+        <li>
+            <a href="#">
+                全部复古
+                <span>All vintage items</span>
+            </a>
+        </li>
+        <?php foreach($vintageItems as $vintageItem): ?>
+        <li>
+            <a href="products/vintage-items/<?php echo urlencode($vintageItem);?>">
+                <?php echo $this->translate($vintageItem);?>
+                <span><?php echo $vintageItem; ?></span>
+            </a>
+        </li>
+        <?php endforeach;?>
+        <li>
+            <a href="#">
+                其他
+                <span>Other vintage items</span>
+            </a>
+        </li>
+    </ul>
+</li>
+<li class="item-parent last">
+    <a class="item archives" href="products/sold-out">藏</a>
+    <ul>
+        <li>
+            <a href="products/sold-out">
+                售罄典藏
+                <span>Archives</span>
+            </a>
+        </li>
+    </ul>
+</li>
+</ul>
+</div>
+</div>
+<div class="image-container">
+    <div class="big-image">
+        <img src="images/big_image.png" alt="">
+    </div>
+    <div class="images-listing">
+        <ul>
+            <li>
+                <a href="#">
+                    <img src="images/small_image.png" alt="">
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <img src="images/small_image.png" alt="">
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <img src="images/small_image.png" alt="">
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <img src="images/small_image.png" alt="">
+                </a>
+            </li>
+        </ul>
+    </div>
 </div>
