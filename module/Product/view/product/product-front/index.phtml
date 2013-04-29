@@ -2,62 +2,78 @@
 $product = $this->product;
 $images = $this->images;
 ?>
-
-<h3><?php echo $product->getName(); ?></h3>
-<div class="row-fluid">
-    <div class="span6 product-top">
-        <div class="single-product-image">
-            <img src="<?php echo $firstImage->readSingleProductImage(); ?>" width="300px" height="255px"/>
-        </div>
-        <div class="other-images">
-        <?php foreach ($images as $image): ?>
-        <img src="<?php echo $image->readThumbImagePath(); ?>"/>
-        <?php endforeach ?>
-        </div>
-    </div>
-    <div class="span6">
-        <ul class="no-style">
-            <li>产地：<a href="<?php echo $this->url('product-front-filter', array('filter-name' => 'country', 'filter-value'=> $product->getCountry()));?>" >
+<div class="text-info">
+    <h1><?php echo $product->getName(); ?></h1>
+    <dl>
+        <dt>产地</dt>
+        <dd>
+            <a href="<?php echo $this->url('product-front-filter', array('filter-name' => 'country', 'filter-value'=> $product->getCountry()));?>" >
                 <?php echo $product->getCountry();?>
-            </a></li>
-            <li>材料：<a href="<?php echo $this->url('product-front-filter', array('filter-name' => 'material', 'filter-value'=> $product->getMaterial()));?>" >
-                <?php echo $product->getMaterial(); ?>
-            </a></li>
-            <li>类别：<a href="<?php echo $this->url('product-front', array('action' => 'category', 'id'=> $product->getCategoryId()));?>" >
-                <?php echo $this->categoryName; ?>
-            </a></li>
-            <li>作者：<a href="<?php echo $this->url('person-front', array('action' => 'index', 'id' => $this->author->getId()));?>">
-                <?php echo $this->author->getName(); ?>
-            </a></li>
+            </a>
+        </dd>
+        <dt>主要材质</dt>
+        <dd>
+            <a href="<?php echo $this->url('product-front-filter', array('filter-name' => 'material', 'filter-value'=> $product->getMaterial()));?>" >
+            <?php echo $product->getMaterial(); ?>
+            </a>
+        </dd>
+        <dt>创作者</dt>
+        <dd>
+           <a href="<?php echo $this->url('person-front', array('action' => 'index', 'id' => $this->author->getId()));?>">
+             <?php echo $this->author->getName(); ?>
+           </a>
+        </dd>
+        <dt>风格系列</dt>
+        <dd>Myths</dd>
+    </dl>
+    <h3>相关参数</h3>
+    <p>长 4cm   宽  1.5cm   高 1cm
+        珠子直径 1cm
+        耳勾为925银     </p>
+    <h3>美物介绍</h3>
+    <p><?php echo $product->getDescription(); ?></p>
+
+    <div class="opt-groups">
+        <span class="price">￥<?php echo $product->getPrice();?></span>
+        <a href="#" class="buy-lnk">购买链接</a>
+    </div>
+    <div class="share-links">
+        <!-- Baidu Button BEGIN -->
+        <div id="bdshare" class="bdshare_t bds_tools_32 get-codes-bdshare">
+            <a class="bds_qzone"></a>
+            <a class="bds_tsina"></a>
+            <a class="bds_tqq"></a>
+            <a class="bds_renren"></a>
+            <a class="bds_t163"></a>
+            <span class="bds_more"></span>
+        </div>
+        <script type="text/javascript" id="bdshare_js" data="type=tools&amp;uid=0" ></script>
+        <script type="text/javascript" id="bdshell_js"></script>
+        <script type="text/javascript">
+            document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static/js/shell_v2.js?cdnversion=" + Math.ceil(new Date()/3600000)
+        </script>
+        <!-- Baidu Button END -->
+    </div>
+</div>
+<div class="product-images">
+    <div class="pre-image">
+        <img src="/images/slide_big_image.png" alt="">
+    </div>
+    <div class="image-listing">
+        <ul>
+            <li>
+                <img src="/images/slide_small_image.png" alt="">
+            </li>
+            <li>
+                <img src="/images/slide_small_image.png" alt="">
+            </li>
+            <li>
+                <img src="/images/slide_small_image.png" alt="">
+            </li>
+            <li>
+                <img src="/images/slide_small_image.png" alt="">
+            </li>
         </ul>
     </div>
 </div>
 
-<div class="row-fluid">
-    <div class="product-description-left span6 well-small">
-        <?php echo $product->getDescription(); ?>
-    </div>
-    <div class="product-description-right span6 well-small">
-        <?php echo $product->getDescription2(); ?>
-    </div>
-</div>
-<div class="row-fluid">
-    <div class="span12 well-small">
-        <?php echo $product->getDescription3(); ?>
-    </div>
-</div>
-<div class="product-image-list">
-    <?php foreach($imageMapper->findByProduct($this->product->getId()) as $image) : ?>
-    <img src="<?php echo $image->getImagePath();?>"/>
-    <?php endforeach; ?>
-</div>
-
-
-</dl>
-<script type="text/javascript">
-    $(function(){
-       $('.other-images img').click(function(e) {
-           $('.single-product-image img').attr('src', $(e.target).attr('src').replace('_th', '_sp'));
-       });
-    });
-</script>

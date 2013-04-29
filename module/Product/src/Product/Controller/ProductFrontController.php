@@ -85,7 +85,7 @@ class ProductFrontController extends AbstractActionController
 
     public function indexAction()
     {
-        $this->setLayout();
+        $this->layout('layout/product-details-layout');
 
         $id = (int) $this->params()->fromRoute('id', 0);
         if (!$id) {
