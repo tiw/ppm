@@ -1,20 +1,21 @@
 <?php
+/**
+ * Created by JetBrains PhpStorm.
+ * User: ting
+ * Date: 13-4-30
+ * Time: 上午9:46
+ * To change this template use File | Settings | File Templates.
+ */
+
 namespace Category\Form;
 
 use Zend\Form\Form;
 
-
-/**
- * Description of CategoryForm
- *
- * @author wangting
- */
-class CategoryForm extends Form
+class SubCategoryForm extends Form
 {
-
     public function __construct()
     {
-        parent::__construct('category');
+        parent::__construct('sub_category');
     }
 
     public function init()
@@ -38,6 +39,16 @@ class CategoryForm extends Form
         ));
 
         $this->add(array(
+            'name' => 'is_primary',
+            'type' => 'Zend\Form\Element\Checkbox',
+            'options' => array(
+                'label' => 'Is Primary',
+                'checked_value' => '1',
+                'unchecked_value' => '0'
+            )
+        ));
+
+        $this->add(array(
             'name' => 'submit',
             'attributes' => array(
                 'type' => 'submit',
@@ -47,4 +58,5 @@ class CategoryForm extends Form
             )
         ));
     }
+
 }

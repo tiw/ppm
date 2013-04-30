@@ -51,6 +51,7 @@ return array(
                 array('route' => 'category-list', 'roles' => array('guest', 'user')),
                 array('route' => 'person-list', 'roles' => array('guest', 'user')),
                 array('route' => 'product-rest', 'roles' => array('guest', 'user')),
+                array('route' => 'sub-category', 'roles' => array('guest', 'user')),
             ),
         ),
     ),

@@ -53,6 +53,12 @@ class ProductFrontController extends AbstractActionController
         }
         return $this->categoryMapper;
     }
+
+    /**
+     * get the product mapper
+     *
+     * @return \Product\Model\Mapper\Product
+     */
     public function getProductMapper()
     {
 

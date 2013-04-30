@@ -14,3 +14,15 @@ echo $this->formHidden($form->get('id'));
 echo $this->formRow($form->get('name'));
 echo $this->formRow($form->get('submit'));
 echo $this->form()->closeTag();
+?>
+
+<h2> Add Sub Category </h2>
+<a class="btn" href="<?php echo $this->url('sub-category', array('action' => 'add', 'id' => $this->id)); ?>">Add </a>
+<h2>Edit sub category</h2>
+<ul>
+    <?php foreach($subCategoies as $subCategory) :?>
+    <li><?php echo $subCategory->getName(); ?>
+        <a class="btn" href="<?php echo $this->url('product-image', array('action' => 'edit', 'id' => $image->getId())); ?>">edit</a>
+    </li>
+<?php endforeach; ?>
+</ul>

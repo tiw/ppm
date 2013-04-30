@@ -1,0 +1,16 @@
+<?php
+/**
+ * Created by JetBrains PhpStorm.
+ * User: ting
+ * Date: 13-4-30
+ * Time: 上午9:58
+ * To change this template use File | Settings | File Templates.
+ */
+$title = 'Add new sub category';
+$this->headTitle($title);
+?>
+    <h1><?php echo $this->escapeHtml($title); ?></h1>
+<?php
+$form = $this->form;
+$form->prepare();
+echo $this->formTwb($form);

@@ -2,11 +2,15 @@
 
 namespace Product;
 
+use Category\Form\SubCategoryForm;
 use ZfcBase\Module\AbstractModule;
 use Category\Form\CategoryForm;
 use Category\Model\Mapper\Category as CategoryMapper;
+use Category\Model\Mapper\SubCategory as SubCategoryMapper;
 use Category\Model\Category;
+use Category\Model\SubCategory;
 use Category\Model\Mapper\CategoryHydrator;
+use Category\Model\Mapper\SubCategoryHydrator;
 use Product\Form\ProductForm;
 use Product\Model\Mapper\ProductHydrator;
 use Product\Model\Product;
@@ -48,6 +52,13 @@ class Module extends AbstractModule
                      $form->init();
                      return $form;
                 },
+                'SubCategoryForm' => function($sm) {
+                    $form = new SubCategoryForm();
+                    $form->setHydrator(new SubCategoryHydrator());
+                    $form->bind(new SubCategory());
+                    $form->init();
+                    return $form;
+                },
                 'ProductForm' => function($sm) {
                     $form = new ProductForm();
                     $form->setHydrator(new ProductHydrator());
@@ -69,6 +80,13 @@ class Module extends AbstractModule
                     $mapper->setDbAdapter($sm->get('Zend\Db\Adapter\Adapter'));
                     $mapper->setEntityPrototype(new Category());
                     $mapper->setHydrator(new CategoryHydrator());
+                    return $mapper;
+                },
+                'Category\Model\Mapper\SubCategory' => function($sm) {
+                    $mapper = new SubCategoryMapper();
+                    $mapper->setDbAdapter($sm->get('Zend\Db\Adapter\Adapter'));
+                    $mapper->setEntityPrototype(new SubCategory());
+                    $mapper->setHydrator(new SubCategoryHydrator());
                     return $mapper;
                 },
                 'Product\Model\Mapper\Product' => function($sm) {

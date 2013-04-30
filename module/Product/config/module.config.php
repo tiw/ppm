@@ -5,6 +5,7 @@ return array(
         'invokables' => array(
             'Product\Controller\Product' => 'Product\Controller\ProductController',
             'Category\Controller\Category' => 'Category\Controller\CategoryController',
+            'Category\Controller\SubCategory' => 'Category\Controller\SubCategoryController',
             'Product\Controller\ProductFront' => 'Product\Controller\ProductFrontController',
             'Product\Controller\ProductRest' => 'Product\Controller\ProductRestController',
             'Product\Controller\Image' => 'Product\Controller\ImageController',
@@ -31,6 +32,16 @@ return array(
                     'route' => '/admin/category[/:action][/:id]',
                     'defaults' => array(
                         'controller' => 'Category\Controller\Category',
+                        'action' => 'index',
+                    ),
+                ),
+            ),
+            'sub-category' => array(
+                'type' => 'segment',
+                'options' => array(
+                    'route' => '/admin/sub-category[/:action][/:id]',
+                    'defaults' => array(
+                        'controller' => 'Category\Controller\SubCategory',
                         'action' => 'index',
                     ),
                 ),
