@@ -9,7 +9,7 @@ $this->headTitle($title);
 <table class="table table-striped">
     <tr>
         <th><?php echo $this->translate('Product id'); ?></th>
-        <th><?php echo $this->translate('Category'); ?></th>
+        <th><?php echo $this->translate('Sub Category'); ?></th>
         <th><?php echo $this->translate('Name'); ?></th>
         <th><?php echo $this->translate('Display name'); ?></th>
         <th><?php echo $this->translate('Price'); ?></th>
@@ -18,7 +18,7 @@ $this->headTitle($title);
     <?php foreach ($products as $product) : ?>
         <tr>
             <td><?php echo $this->escapeHtml($product->getId()); ?></td>
-            <td><?php echo $this->escapeHtml($product->readCategoryName()); ?></td>
+            <td><?php echo $this->escapeHtml($product->readSubCategoryName()); ?></td>
             <td><?php echo $this->escapeHtml($product->getName()); ?></td>
             <td><?php echo $this->escapeHtml($product->getDisplayName()); ?></td>
             <td><?php echo $this->escapeHtml($product->getPrice()); ?></td>

@@ -23,11 +23,11 @@ class Product
      */
     protected $name;
 
+
     /**
-     * The id of the product
-     * @var type int
+     * @var int sub category id
      */
-    protected $categoryId;
+    protected $subCategoryId;
 
     /**
      * The id of the author
@@ -49,13 +49,13 @@ class Product
 
     /**
      * category name
-     * @var type string
+     * @var string
      */
-    protected $categoryName;
+    protected $subCategoryName;
 
     /**
      * Description of the product
-     * @var type string
+     * @var string
      */
     protected $description;
 
@@ -147,14 +147,20 @@ class Product
         $this->name = $name;
     }
 
-    public function getCategoryId()
+    /**
+     * @param int $subCategoryId
+     */
+    public function setSubCategoryId($subCategoryId)
     {
-        return $this->categoryId;
+        $this->subCategoryId = $subCategoryId;
     }
 
-    public function setCategoryId($categoryId)
+    /**
+     * @return int
+     */
+    public function getSubCategoryId()
     {
-        $this->categoryId = $categoryId;
+        return $this->subCategoryId;
     }
 
     public function getAuthorId()
@@ -197,14 +203,14 @@ class Product
         $this->description = $description;
     }
 
-    public function readCategoryName()
+    public function readSubCategoryName()
     {
-        return $this->categoryName;
+        return $this->subCategoryName;
     }
 
-    public function writeCategoryName($name)
+    public function writeSubCategoryName($name)
     {
-        $this->categoryName = $name;
+        $this->subCategoryName = $name;
     }
 }
 

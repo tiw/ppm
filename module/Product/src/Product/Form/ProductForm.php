@@ -25,10 +25,26 @@ class ProductForm extends Form
     protected $categoryMapper = null;
 
     /**
+     * @var \Category\Model\Mapper\SubCategory
+     */
+    protected $subCategoryMapper = null;
+
+    /**
      * @var \Person\Model\Mapper\Person
      */
     protected $personMapper = null;
 
+
+    protected $allSubCategoryOptions = [];
+
+    protected $allCategoryOptions = [];
+
+    protected $firstSubCategoryOptions = [];
+
+
+    /**
+     * @param \Category\Model\Mapper\Category $mapper category mapper
+     */
     public function setCategoryMapper($mapper)
     {
         $this->categoryMapper = $mapper;
@@ -44,6 +60,23 @@ class ProductForm extends Form
             throw new \Exception('Category Mapper is not set');
         }
         return $this->categoryMapper;
+    }
+
+    /**
+     * @param \Category\Model\Mapper\SubCategory $mapper sub category mapper
+     */
+    public function setSubCategoryMapper($mapper)
+    {
+        $this->subCategoryMapper = $mapper;
+    }
+
+
+    public function getSubCategoryMapper()
+    {
+        if (!$this->subCategoryMapper) {
+            throw new \Exception('Sub category mapper is not set');
+        }
+        return $this->subCategoryMapper;
     }
 
     public function setPersonMapper($personMapper)
@@ -78,24 +111,33 @@ class ProductForm extends Form
             ),
         ));
 
-        $categoryOptions = array();
-        $allCategories = $this->getCategoryMapper()->fetchAll();
-        foreach ($allCategories as $category) {
-            $categoryOptions[$category->getId()] = $category->getName();
-        }
 
 
+        list($categoryOptions, $subCategoryOptions, $firstSubCategoryOptions)
+            = $this->getOptions();
+
+//        $this->add(array(
+//            'name'          => 'category_id',
+//            'type'          => 'Zend\Form\Element\Select',
+//            'options'       => array(
+//                'label'             => 'Category',
+//                //'hint'              => 'Hint',
+//                //'description'       => 'Description.',
+//                'value_options'     => $categoryOptions,
+//            ),
+//        ));
+
+//        var_dump($subCategoryOptions);
 
         $this->add(array(
-            'name'          => 'category_id',
-            'type'          => 'Zend\Form\Element\Select',
-            'options'       => array(
-                'label'             => 'Category',
-                //'hint'              => 'Hint',
-                //'description'       => 'Description.',
-                'value_options'     => $categoryOptions,
-            ),
+            'name' => 'sub_category_id',
+            'type' => 'Zend\Form\Element\Select',
+            'options' => array(
+                'label' => 'Sub Category',
+                'value_options' => $subCategoryOptions,
+            )
         ));
+
 
         $personOptions = array();
         $allPersons = $this->getPersonMapper()->fetchAll();
@@ -224,6 +266,28 @@ class ProductForm extends Form
         ));
     }
 
-}
+    public function getOptions()
+    {
+        if (count($this->allCategoryOptions) === 0) {
 
-?>
+            $allCategories = $this->getCategoryMapper()->fetchAll();
+
+            foreach ($allCategories as $category) {
+                $this->allCategoryOptions[$category->getId()] = $category->getName();
+                $subCategoryOptions = [];
+                $subCategories = $this->getSubCategoryMapper()->getSubCategories($category->getId());
+                foreach($subCategories as $subCategory) {
+                    $subCategoryOptions[$subCategory->getId()] = $subCategory->getName();
+                }
+                if (count($this->firstSubCategoryOptions) === 0 ) {
+                    $this->firstSubCategoryOptions = $subCategoryOptions;
+                }
+                $this->allSubCategoryOptions[] = [
+                    'label' => $category->getName(), 'options' => $subCategoryOptions
+                ];
+            }
+        }
+        return [$this->allCategoryOptions, $this->allSubCategoryOptions, $this->firstSubCategoryOptions];
+    }
+
+}

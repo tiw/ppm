@@ -16,8 +16,8 @@ class ProductHydrator extends ClassMethods
     //put your code here
     public function hydrate(array $data, $object)
     {
-        if (isset($data['category_name'])) {
-            $object->writeCategoryName($data['category_name']);
+        if (isset($data['sub_category_name'])) {
+            $object->writeSubCategoryName($data['sub_category_name']);
         }
         return parent::hydrate($data, $object);
     }

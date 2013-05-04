@@ -22,7 +22,9 @@ class Product extends Base
         if (null === $select) {
             $select = $this->getSelect();
         }
-        $select->join(array('c' => 'category'), 'category_id = c.id', array('category_name' => 'name'));
+        $select->join(
+            array('c' => 'sub_category'),
+            'sub_category_id = c.id', array('sub_category_name' => 'name'));
         return parent::fetchAll($select);
     }
 
@@ -40,9 +42,9 @@ class Product extends Base
         return $this->select($select);
     }
 
-    public function fetchProductByCategory($id)
+    public function fetchProductBySubCategory($id)
     {
-        return $this->select($this->getSelect()->where(array('category_id' => $id)));
+        return $this->select($this->getSelect()->where(array('sub_category_id' => $id)));
     }
 }
 
