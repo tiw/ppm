@@ -6,11 +6,16 @@
             <div class="photo">
                 <a href="<?php echo $this->url('product-front', array('action' => 'index', 'id' => $product->getId())); ?>">
                     <?php
-                    $imagePath = $this->imageMapper->getFirstImage($product->getId())->readListProductImage();
+                    $firstImage = $this->imageMapper->getFirstImage($product->getId());
+                    if ($firstImage) {
+                        $imagePath = $firstImage->readListProductImage();
+                    } else {
+                        $imagePath = false;
+                    }
                     if ($imagePath) {
                         echo '<img src="' . $imagePath . '"  width="300" height="300"/>';
                     } else {
-                        echo '<img src="/product-images/dummy.jpg"  width="300" height="300"/>';
+                        echo '<img src="/product_images/dummy-300-300.gif"  width="300" height="300"/>';
                     }
                     ?>
                 </a>

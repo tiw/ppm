@@ -79,6 +79,8 @@ class ProductFrontController extends AbstractActionController
             $min = $this->getSeasonService()->seasonStart($year, $season);
             $max = $this->getSeasonService()->seasonEnd($year, $season);
             $products = $this->getProductMapper()->getProductByBetweenFilter('created_at', $min, $max);
+        } elseif($filterName === 'category') {
+            $products = $this->getProductMapper()->getProductBySubCategoryName($filterValue);
         } else {
             $products = $this->getProductMapper()->getProductByFilter($filterName, $filterValue);
         }
@@ -108,7 +110,7 @@ class ProductFrontController extends AbstractActionController
             'images' => $images,
             'firstImage' => $firstImage,
             'imageMapper' => $this->getProductImageMapper(),
-            'categoryName' => $this->getCategoryMapper()->findById($product->getCategoryId())->getName(),
+            'categoryName' => '',//$this->getCategoryMapper()->findById($product->getCategoryId())->getName(),
             'author' => $this->getPersonMapper()->findById($product->getAuthorId()),
         );
     }

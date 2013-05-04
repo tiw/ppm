@@ -52,7 +52,12 @@ class Image
      */
     public function readListProductImage()
     {
-        return str_replace('.', '_ls.', $this->getImagePath());
+        $imagePath = $this->getImagePath();
+        if(isset($imagePath)) {
+            return str_replace('.', '_ls.', $this->getImagePath());
+        } else {
+            return false;
+        }
     }
 
     public function setImagePath($imagePath)

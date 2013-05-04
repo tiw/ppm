@@ -34,6 +34,17 @@ class Product extends Base
         return $this->select($select);
     }
 
+    public function getProductBySubCategoryName($subCategoryName)
+    {
+        $select = $this->getSelect();
+        $select->join(
+            array('c' => 'sub_category'),
+            'sub_category_id = c.id',
+            array('sub_category_name' => 'name')
+        )->where(['c.name' => $subCategoryName]);
+        return $this->select($select);
+    }
+
     public function getProductByBetweenFilter($filterName, $minValue, $maxValue)
     {
         $where = new \Zend\Db\Sql\Where();

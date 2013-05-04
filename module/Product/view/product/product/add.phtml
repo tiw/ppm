@@ -22,20 +22,6 @@ echo $this->formTwb($form,\DluTwBootstrap\Form\FormUtil::FORM_TYPE_HORIZONTAL);
 ?>
 <script>
 $(function() {
-    var subCategories = [];
-    <?php
-    list($categoryOptions, $allSubCategoryOptions, $first) = $form->getOptions();
-    foreach($allSubCategoryOptions as $key => $option):
-    ?>
-    subCategories[<?php echo $key;?>] || (subCategories[<?php echo $key; ?>] = []);
-    <?php
-        foreach($option as $k => $v):
-    ?>
-    subCategories[<?php echo $key; ?>][<?php echo $k; ?>] = '<?php echo $v?>';
-    <?php
-        endforeach;
-    endforeach;
-    ?>
     $( "#created_at" ).datepicker({ dateFormat: "yy-mm-dd" });
 });
 </script>
