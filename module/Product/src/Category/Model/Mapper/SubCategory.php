@@ -21,11 +21,11 @@ class SubCategory extends Base
      *
      * @return object
      */
-    public function getSubCategory($categoryId)
+    public function getSubCategories($categoryId)
     {
-        return $this->select(
-            $this->getSelect()->where(array('category_id' => $categoryId))
-        )->current();
+        $select = $this->getSelect();
+        $select->where(array('category_id' => $categoryId));
+        return $this->select($select);
     }
 
     /**
@@ -34,10 +34,10 @@ class SubCategory extends Base
      *
      * @return object
      */
-    public function getPrimarySubCategory($categoryId)
+    public function getPrimarySubCategories($categoryId)
     {
-        return $this->select(
-            $this->getSelect()->where(array('primary' => 1, 'category_id' => $categoryId))
-        )->current();
+        $select = $this->getSelect();
+        $select->where(array('category_id' => $categoryId, 'is_primary' => 1));
+        return $this->select($select);
     }
 }

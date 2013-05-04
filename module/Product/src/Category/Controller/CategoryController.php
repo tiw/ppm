@@ -14,6 +14,8 @@ class CategoryController extends AbstractActionController
 {
     protected $categoryMapper;
 
+    protected $subCategoryMapper;
+
     public function getCategoryMapper()
     {
         if (!$this->categoryMapper) {
@@ -21,6 +23,15 @@ class CategoryController extends AbstractActionController
             $this->categoryMapper = $sm->get('Category\Model\Mapper\Category');
         }
         return $this->categoryMapper;
+    }
+
+    public function getSubCategoryMapper()
+    {
+        if (!$this->subCategoryMapper) {
+            $sm = $this->getServiceLocator();
+            $this->subCategoryMapper = $sm->get('Category\Model\Mapper\SubCategory');
+        }
+        return $this->subCategoryMapper;
     }
 
     public function indexAction()
@@ -75,9 +86,12 @@ class CategoryController extends AbstractActionController
             }
         }
 
+        $subCategories = $this->getSubCategoryMapper()->getSubCategories($id);
+
         return array(
             'id' => $id,
             'form' => $form,
+            'subCategories' => $subCategories,
         );
     }
 
