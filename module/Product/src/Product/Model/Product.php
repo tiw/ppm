@@ -47,6 +47,30 @@ class Product
      */
     protected $price;
 
+    protected $parameters;
+
+    public function setParameters($parameters)
+    {
+        $this->parameters = $parameters;
+    }
+
+    public function getParameters()
+    {
+        return $this->parameters;
+    }
+
+    protected $style;
+
+    public function setStyle($style)
+    {
+        $this->style = $style;
+    }
+
+    public function getStyle()
+    {
+        return $this->style;
+    }
+
     /**
      * category name
      * @var string

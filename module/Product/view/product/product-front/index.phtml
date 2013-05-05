@@ -24,12 +24,10 @@ $images = $this->images;
            </a>
         </dd>
         <dt>风格系列</dt>
-        <dd>Myths</dd>
+        <dd><?php echo $product->getStyle(); ?></dd>
     </dl>
     <h3>相关参数</h3>
-    <p>长 4cm   宽  1.5cm   高 1cm
-        珠子直径 1cm
-        耳勾为925银     </p>
+    <p><?php echo $product->getParameters(); ?></p>
     <h3>美物介绍</h3>
     <p><?php echo $product->getDescription(); ?></p>
 

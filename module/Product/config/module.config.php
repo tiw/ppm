@@ -116,6 +116,17 @@ return array(
                     ),
                 ),
             ),
+            'product-decoration' => array(
+                'type' => 'segment',
+                'options' => array(
+                    'route' => '/products/decorations/:name',
+                    'defaults' => array(
+                        'controller' => '\Product\Controller\ProductFront',
+                        'action' => 'decorations',
+                    )
+                )
+
+            ),
             'product-rest' => array(
                 'type' => 'segment',
                 'options' => array(

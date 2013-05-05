@@ -4,6 +4,7 @@ namespace Product\Controller;
 
 use Zend\Mvc\Controller\AbstractActionController;
 use Product\Model\Product;
+use Zend\View\Model\ViewModel;
 
 class ProductFrontController extends AbstractActionController
 {
@@ -113,6 +114,20 @@ class ProductFrontController extends AbstractActionController
             'categoryName' => '',//$this->getCategoryMapper()->findById($product->getCategoryId())->getName(),
             'author' => $this->getPersonMapper()->findById($product->getAuthorId()),
         );
+    }
+
+    public function decorationsAction()
+    {
+        $this->setLayout();
+        $name = $this->params()->fromRoute('name', 'Display');
+        $products = $this->getProductMapper()->getProductBySubCategoryName($name);
+        $view = new ViewModel(array(
+            'products' => $products,
+            'imageMapper' => $this->getProductImageMapper(),
+            'personMapper' => $this->getPersonMapper(),
+        ));
+        $view->setTemplate('product/product-front/filter');
+        return $view;
     }
 
     public function listAction()

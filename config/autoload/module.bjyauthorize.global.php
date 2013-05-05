@@ -45,6 +45,7 @@ return array(
                 array('route' => 'product-front', 'roles' => array('guest', 'user')),
                 array('route' => 'product-image', 'roles' => array('guest', 'user')),
                 array('route' => 'product-front-filter', 'roles' => array('guest', 'user')),
+                array('route' => 'product-decoration', 'roles' => array('guest', 'user')),
                 array('route' => 'person', 'roles' => array('guest', 'user')),
                 array('route' => 'person-front', 'roles' => array('guest', 'user')),
                 array('route' => 'product-list', 'roles' => array('guest', 'user')),

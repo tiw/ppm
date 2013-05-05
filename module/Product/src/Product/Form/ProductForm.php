@@ -203,6 +203,27 @@ class ProductForm extends Form
             ),
         ));
 
+
+        $this->add(array(
+            'name' => 'parameters',
+            'attributes' => array(
+                'type' => 'textarea',
+            ),
+            'options' => array(
+                'label' => 'Parameters'
+            )
+        ));
+
+        $this->add(array(
+            'name' => 'style',
+            'attributes' => array(
+                'type' => 'text',
+            ),
+            'options' => array(
+                'label' => 'Style',
+            ),
+        ));
+
         $this->add(array(
             'name' => 'created_at',
             'attributes' => array(
