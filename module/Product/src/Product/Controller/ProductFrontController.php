@@ -122,6 +122,7 @@ class ProductFrontController extends AbstractActionController
         $name = $this->params()->fromRoute('name', 'Display');
         $products = $this->getProductMapper()->getProductBySubCategoryName($name);
         $view = new ViewModel(array(
+            'logo' => '/images/h7.png',
             'products' => $products,
             'imageMapper' => $this->getProductImageMapper(),
             'personMapper' => $this->getPersonMapper(),
@@ -130,6 +131,48 @@ class ProductFrontController extends AbstractActionController
         return $view;
     }
 
+    public function utensilsAction()
+    {
+        $this->setLayout();
+        $name = $this->params()->fromRoute('name', 'Stationery');
+        $products = $this->getProductMapper()->getProductBySubCategoryName($name);
+        $view = new ViewModel(array(
+            'logo' => '/images/h1.png',
+            'products' => $products,
+            'imageMapper' => $this->getProductImageMapper(),
+            'personMapper' => $this->getPersonMapper(),
+        ));
+        $view->setTemplate('product/product-front/filter');
+        return $view;
+    }
+    public function vintagesAction()
+    {
+        $this->setLayout();
+        $name = $this->params()->fromRoute('name', 'Finery');
+        $products = $this->getProductMapper()->getProductBySubCategoryName($name);
+        $view = new ViewModel(array(
+            'logo' => '/images/h8.png',
+            'products' => $products,
+            'imageMapper' => $this->getProductImageMapper(),
+            'personMapper' => $this->getPersonMapper(),
+        ));
+        $view->setTemplate('product/product-front/filter');
+        return $view;
+    }
+    public function omamentsAction()
+    {
+        $this->setLayout();
+        $name = $this->params()->fromRoute('name', 'Necklaces');
+        $products = $this->getProductMapper()->getProductBySubCategoryName($name);
+        $view = new ViewModel(array(
+            'logo' => '/images/h6.png',
+            'products' => $products,
+            'imageMapper' => $this->getProductImageMapper(),
+            'personMapper' => $this->getPersonMapper(),
+        ));
+        $view->setTemplate('product/product-front/filter');
+        return $view;
+    }
     public function listAction()
     {
         $this->setLayout();
@@ -148,6 +191,7 @@ class ProductFrontController extends AbstractActionController
         }
         $products = $this->getProductMapper()->fetchProductByCategory($id);
         return array(
+            'logo' => '/images/h6.png',
             'products' => $products,
             'imageMapper' => $this->getProductImageMapper(),
             'personMapper' => $this->getPersonMapper(),

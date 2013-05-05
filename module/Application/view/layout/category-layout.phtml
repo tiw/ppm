@@ -9,7 +9,11 @@
 <div class="container">
     <div class="header-ext">
         <div class="cate fl">
-            <img src="/images/h4.png" witdh="180" height="84" alt="">
+            <?php
+            $children = $this->viewModel()->getCurrent()->getChildren();
+            $child = $children[0];
+            ?>
+            <img src="<?php echo $child->logo;?>" witdh="180" height="84" alt="">
         </div>
 
         <div class="logo fr">

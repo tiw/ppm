@@ -127,6 +127,39 @@ return array(
                 )
 
             ),
+            'product-utensil' => array(
+                'type' => 'segment',
+                'options' => array(
+                    'route' => '/products/utensils/:name',
+                    'defaults' => array(
+                        'controller' => '\Product\Controller\ProductFront',
+                        'action' => 'utensils',
+                    )
+                )
+
+            ),
+            'product-omament' => array(
+                'type' => 'segment',
+                'options' => array(
+                    'route' => '/products/omaments/:name',
+                    'defaults' => array(
+                        'controller' => '\Product\Controller\ProductFront',
+                        'action' => 'omaments',
+                    )
+                )
+
+            ),
+            'product-vintage' => array(
+                'type' => 'segment',
+                'options' => array(
+                    'route' => '/products/vintage-items/:name',
+                    'defaults' => array(
+                        'controller' => '\Product\Controller\ProductFront',
+                        'action' => 'vintages',
+                    )
+                )
+
+            ),
             'product-rest' => array(
                 'type' => 'segment',
                 'options' => array(
