@@ -222,7 +222,7 @@
             </li>
             <li>
                 <a href="#">
-                    <img src="images/small_image.png" alt="">
+                    <img src="http://placehold.it/180x135" alt="">
                 </a>
             </li>
             <li>
@@ -232,9 +232,35 @@
             </li>
             <li>
                 <a href="#">
-                    <img src="images/small_image.png" alt="">
+                    <img src="http://placehold.it/180x135" alt="">
                 </a>
             </li>
         </ul>
     </div>
 </div>
+<script type="text/javascript">
+    $(function() {
+
+        var imgs = [],
+            i = 0;
+        var switchImage = function () {
+            if (i > 3) {
+                i = i - 4;
+            }
+            console.log(i, imgs[i]);
+            var bigImageUrl = imgs[i].replace(/180x135/, '800x600');
+            bigImageUrl = bigImageUrl.replace(/small/, 'big');
+            $('.big-image img').fadeOut(400, function() {
+                $('.big-image img').attr({'src': bigImageUrl});
+            })
+                .fadeIn(400);
+            i = i + 1;
+
+        };
+        $('.images-listing a img').each(function(i, img) {
+            imgs.push($(img).attr('src'));
+        });
+
+        setInterval(switchImage, 4000);
+    });
+</script>
