@@ -1,5 +1,7 @@
 <?php
 echo $this->partial('partial/productlist', array(
-    'products' => $this->products, 'imageMapper' => $this->imageMapper,
+    'title' => $this->title,
+    'products' => $this->products,
+    'imageMapper' => $this->imageMapper,
     'personMapper' => $this->personMapper,
 ));

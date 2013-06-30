@@ -75,17 +75,20 @@ class ProductFrontController extends AbstractActionController
         $this->setLayout();
         $filterName = $this->params()->fromRoute('filter-name', '');
         $filterValue = $this->params()->fromRoute('filter-value', '');
+        $title = "products";
         if ($filterName === 'season') {
-            list($year, $season) = explode('-', $filterValue);
-            $min = $this->getSeasonService()->seasonStart($year, $season);
-            $max = $this->getSeasonService()->seasonEnd($year, $season);
-            $products = $this->getProductMapper()->getProductByBetweenFilter('created_at', $min, $max);
+            $aDate = $filterValue . '-1';
+            $startDate =  $aDate;
+            $endDate = date("Y-m-t", strtotime($aDate));
+            $products = $this->getProductMapper()->getProductByBetweenFilter('created_at', $startDate, $endDate);
+            $title = "the product at {$aDate}";
         } elseif($filterName === 'category') {
             $products = $this->getProductMapper()->getProductBySubCategoryName($filterValue);
         } else {
             $products = $this->getProductMapper()->getProductByFilter($filterName, $filterValue);
         }
         return array(
+            'title' => $title,
             'products' => $products,
             'imageMapper' => $this->getProductImageMapper(),
             'personMapper' => $this->getPersonMapper()

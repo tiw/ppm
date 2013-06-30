@@ -83,7 +83,7 @@ class ChineseSeason
                 $year = $year - 1;
                 return $year . '-12-01';
             default:
-                throw new Exception('there are just four seasons');
+                throw new \Exception('there are just four seasons');
         }
     }
 
@@ -99,7 +99,7 @@ class ChineseSeason
             case self::DONG:
                 return $year . '-02-29';
             default:
-                throw new Exception('there are just four seasons');
+                throw new \Exception('there are just four seasons');
         }
 
     }

@@ -4,6 +4,7 @@ namespace Product\Model\Mapper;
 
 use Tiddr\Mapper\Base;
 use Zend\Db\ResultSet\HydratingResultSet;
+use Zend\Db\Sql\Where;
 use Zend\Paginator\Paginator;
 use Zend\Paginator\Adapter\DbSelect;
 
@@ -47,7 +48,7 @@ class Product extends Base
 
     public function getProductByBetweenFilter($filterName, $minValue, $maxValue)
     {
-        $where = new \Zend\Db\Sql\Where();
+        $where = new Where();
         $where->between($filterName, $minValue, $maxValue);
         $select = $this->getSelect()->where($where);
         return $this->select($select);
@@ -58,5 +59,3 @@ class Product extends Base
         return $this->select($this->getSelect()->where(array('sub_category_id' => $id)));
     }
 }
-
-?>
