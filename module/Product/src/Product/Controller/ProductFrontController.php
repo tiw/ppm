@@ -72,22 +72,34 @@ class ProductFrontController extends AbstractActionController
 
     public function filterAction()
     {
+        $logoMap = array(
+            'season' => '/images/h3.png',
+            'country' => '/images/h2.png',
+            'material' => '/images/h5.png'
+        );
         $this->setLayout();
         $filterName = $this->params()->fromRoute('filter-name', '');
         $filterValue = $this->params()->fromRoute('filter-value', '');
         $title = "products";
+        $defaultLogo = '/images/h1.png';
         if ($filterName === 'season') {
             $aDate = $filterValue . '-1';
             $startDate =  $aDate;
             $endDate = date("Y-m-t", strtotime($aDate));
             $products = $this->getProductMapper()->getProductByBetweenFilter('created_at', $startDate, $endDate);
-            $title = "the product at {$aDate}";
+            $title = "the product at {$filterValue}";
         } elseif($filterName === 'category') {
             $products = $this->getProductMapper()->getProductBySubCategoryName($filterValue);
         } else {
+            if ($filterName === 'country') {
+                $title = $filterValue;
+            } else if ($filterName === 'material') {
+                $title = $filterValue;
+            }
             $products = $this->getProductMapper()->getProductByFilter($filterName, $filterValue);
         }
         return array(
+            'logo' => isset($logoMap[$filterName]) ? $logoMap[$filterName] : $defaultLogo,
             'title' => $title,
             'products' => $products,
             'imageMapper' => $this->getProductImageMapper(),

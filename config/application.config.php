@@ -11,6 +11,7 @@ return array(
         'Product',
         'Tiddr',
         'Person',
+        'Country'
     ),
     'module_listener_options' => array(
         'config_glob_paths'    => array(

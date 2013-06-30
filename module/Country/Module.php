@@ -7,6 +7,7 @@ namespace Country;
  * Time: 下午4:38 
  */
 
+use Country\Form\CountryForm;
 use Country\Model\Mapper\Country as CountryMapper;
 use Country\Model\Country;
 use Country\Model\Mapper\CountryHydrator;
@@ -25,13 +26,6 @@ class Module extends AbstractModule
         return __NAMESPACE__;
     }
 
-    public function getAutoloaderConfig()
-    {
-        $config = parent::getAutoloaderConfig();
-        $config['Zend\Loader\StandardAutoLoader']['namespaces']['Country'] =
-            $this->getDir() . '/src/Country';
-    }
-
     public function getServiceConfig()
     {
         return array(
@@ -42,6 +36,14 @@ class Module extends AbstractModule
                     $mapper->setEntityPrototype(new Country());
                     $mapper->setHydrator(new CountryHydrator());
                     return $mapper;
+                },
+                'CountryForm' => function() {
+                    $form = new CountryForm();
+                    $form->setHydrator(new CountryHydrator());
+                    $form->bind(new Country());
+                    $form->init();
+                    return $form;
+
                 }
             )
         );

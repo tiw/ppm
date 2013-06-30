@@ -1,0 +1,6 @@
+<h1> <?php echo $this->title;?> </h1>
+<?php
+$form = $this->countryForm;
+$form->prepare();
+
+echo $this->formTwb($form,\DluTwBootstrap\Form\FormUtil::FORM_TYPE_HORIZONTAL);
