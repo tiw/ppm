@@ -13,8 +13,7 @@ return array(
     ),
     'view_manager' => array(
         'template_path_stack' => array(
-            'category' => __DIR__ . '/../view',
-//            'category' => __DIR__ . '/../view',
+            'country' => __DIR__ . '/../view',
         ),
     ),
     'router' => array(
@@ -23,6 +22,16 @@ return array(
                 'type' => 'segment',
                 'options' => array(
                     'route' => '/admin/country[/:action][/:id]',
+                    'defaults' => array(
+                        'controller' => 'Country\Controller\Country',
+                        'action' => 'index',
+                    ),
+                ),
+            ),
+            'country-list' => array(
+                'type' => 'segment',
+                'options' => array(
+                    'route' => '/admin/country[/page/:page]',
                     'defaults' => array(
                         'controller' => 'Country\Controller\Country',
                         'action' => 'index',

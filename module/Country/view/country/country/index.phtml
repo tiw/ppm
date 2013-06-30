@@ -1,4 +1,10 @@
 <h1> <?php echo $this->title;?> </h1>
+
+<p>
+    <a class="btn" href="<?php echo $this->url('country', array('action' => 'add')); ?>">
+        Add
+    </a>
+</p>
 <table class="table table-striped">
     <tr>
         <th></th>
@@ -11,9 +17,14 @@
         <td></td>
         <td><?php echo $country->getName();?></td>
         <td><?php echo $country->getIsPrimary()? 'yes':'no'?></td>
-        <td><a class="btn">edit</a><a class="btn">delete</a></td>
+        <td><a class="btn" href="<?php echo $this->url(
+                'country', array('action' => 'edit', 'id' => $country->getId()));
+            ?>">edit</a><a class="btn" href="<?php echo $this->url(
+                'country', array('action' => 'delete', 'id' => $country->getId())
+            );?>">delete</a></td>
     </tr>
 <?php endforeach; ?>
 </table>
+<?php //echo $this->paginationControl($categories, 'Sliding', 'pagination_control', array('route' => 'country-list'));
 
 

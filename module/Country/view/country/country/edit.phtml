@@ -5,3 +5,7 @@
  * Date: 13-6-30
  * Time: 下午7:49 
  */
+$form = $this->form;
+$form->setAttribute('action', $this->url('product', array('action' => 'edit', 'id' => $this->id)));
+$form->prepare();
+echo $this->formTwb($form);

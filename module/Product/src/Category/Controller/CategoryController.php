@@ -115,5 +115,3 @@ class CategoryController extends AbstractActionController
         );
     }
 }
-
-?>

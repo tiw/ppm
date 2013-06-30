@@ -38,13 +38,12 @@ class CountryForm extends Form
         ));
 
         $this->add(array(
-            'name' => 'isPrimary',
+            'name' => 'is_primary',
             'type' => 'Zend\Form\Element\Checkbox',
             'options' => array(
-                'label' => 'Is primary',
-                'use_hidden_element' => true,
-                'checked_value' => 'isPrimary',
-                'unchecked_value' => 'notPrimary'
+                'label' => 'Is Primary',
+                'checked_value' => '1',
+                'unchecked_value' => '0'
             )
         ));
 

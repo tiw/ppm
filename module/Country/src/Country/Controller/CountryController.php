@@ -23,7 +23,7 @@ class CountryController extends AbstractActionController
     {
         $sm = $this->getServiceLocator();
         $countries = $sm->get('Country\Model\Mapper\Country')->fetchAll();
-        $countries->setCurrentPageNumber($this->params()->fromRoute('page'));
+//        $countries->setCurrentPageNumber($this->params()->fromRoute('page'));
         return array(
             'title' => 'List of countries',
             'countries' => $countries,
@@ -39,17 +39,46 @@ class CountryController extends AbstractActionController
             if($countryForm->isValid()) {
                 $country = new Country();
                 $country->setName($this->getRequest()->getPost()->name);
-                if ($this->getRequest()->getPost()->isPrimary === 'isPrimary') {
+                if ($this->getRequest()->getPost()->isPrimary === '1') {
                     $country->setIsPrimary(true);
                 } else {
                     $country->setIsPrimary(false);
                 }
                 $sm->get('Country\Model\Mapper\Country')->insert($country);
+                $this->redirect()->toRoute('country');
             }
         }
         return array(
             'countryForm' => $countryForm,
             'title' => 'Add new country'
+        );
+    }
+
+
+    public function editAction()
+    {
+        $sm = $this->getServiceLocator();
+        $countryId = $this->params()->fromRoute('id');
+        $country = $sm->get('Country\Model\Mapper\Country')
+            ->findById($countryId);
+        $form = $sm->get('CountryForm');
+        $form->bind($country);
+        $form->get('submit')->setAttribute('value', 'Edit');
+        $request = $this->getRequest();
+
+        if ($request->isPost()) {
+            $data = $request->getPost();
+            var_dump($data);
+            $form->setData($request->getPost());
+            if ($form->isValid()) {
+                $sm->get('Country\Model\Mapper\Country')->update($form->getData());
+                return $this->redirect()->toRoute('country');
+            }
+        }
+
+        return array(
+            'id' => $countryId,
+            'form' => $form,
         );
     }
 }
