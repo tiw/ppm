@@ -35,13 +35,33 @@ class ProductForm extends Form
     protected $personMapper = null;
 
 
+    /**
+     * @var \Country\Model\Mapper\Country
+     */
+    protected $countryMapper = null;
+
+
     protected $allSubCategoryOptions = [];
 
     protected $allCategoryOptions = [];
 
     protected $firstSubCategoryOptions = [];
 
+    protected $allCountryOptions = [];
 
+
+    public function setCountryMapper($mapper)
+    {
+        $this->countryMapper = $mapper;
+    }
+
+    public function getCountryMapper()
+    {
+        if (!$this->countryMapper) {
+            throw new \Exception('Country Mapper is not set');
+        }
+        return $this->countryMapper;
+    }
     /**
      * @param \Category\Model\Mapper\Category $mapper category mapper
      */
@@ -183,14 +203,19 @@ class ProductForm extends Form
             ),
         ));
 
+        $countryOptions = array();
+        $allCountries = $this->getCountryMapper()->fetchAll();
+        foreach ($allCountries as $aCountry) {
+            $countryOptions[$aCountry->getId()] = $aCountry->getName();
+        }
+
         $this->add(array(
-            'name' => 'country',
-            'attributes' => array(
-                'type' => 'text',
-            ),
+            'name' => 'country_id',
+            'type' => 'Zend\Form\Element\Select',
             'options' => array(
-                'label' => 'Country'
-            ),
+                'label' => 'Author',
+                'value_options' => $countryOptions,
+            )
         ));
 
         $this->add(array(

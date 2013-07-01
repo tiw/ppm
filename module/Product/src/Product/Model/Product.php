@@ -110,7 +110,7 @@ class Product
      * From which country
      * @var type string
      */
-    protected $country;
+    protected $countryId;
 
     /**
      * in which kind of material
@@ -126,13 +126,13 @@ class Product
 
 
 
-    public function getCountry()
+    public function getCountryId()
     {
-        return $this->country;
+        return $this->countryId;
     }
-    public function setCountry($country)
+    public function setCountryId($countryId)
     {
-        $this->country = $country;
+        $this->countryId = $countryId;
     }
     public function getMaterial()
     {

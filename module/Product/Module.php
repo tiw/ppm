@@ -65,6 +65,7 @@ class Module extends AbstractModule
                     $form->setCategoryMapper($sm->get('Category\Model\Mapper\Category'));
                     $form->setPersonMapper($sm->get('PersonMapper'));
                     $form->setSubCategoryMapper($sm->get('Category\Model\Mapper\SubCategory'));
+                    $form->setCountryMapper($sm->get('Country\Model\Mapper\Country'));
                     $form->bind(new Product());
                     $form->init();
                     return $form;

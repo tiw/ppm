@@ -81,4 +81,30 @@ class CountryController extends AbstractActionController
             'form' => $form,
         );
     }
+
+
+    public function getCountryMapper()
+    {
+        return $this->getServiceLocator()->get('Country\Model\Mapper\Country');
+    }
+
+    public function deleteAction()
+    {
+        $id = (int) $this->params()->fromRoute('id', 0);
+        if (!$id) {
+            return $this->redirect()->toRoute('country');
+        }
+        $request = $this->getRequest();
+        if ($request->isPost()) {
+            $del = $request->getPost('del', 'No');
+            if ($del == 'Yes') {
+                $this->getCountryMapper()->deleteById($id);
+            }
+            return $this->redirect()->toRoute('country');
+        }
+        return array(
+            'id' => $id,
+            'country' => $this->getCountryMapper()->findById($id),
+        );
+    }
 }
