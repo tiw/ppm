@@ -1,14 +1,15 @@
 <?php
 $product = $this->product;
 $images = $this->images;
+$country = $this->country;
 ?>
 <div class="text-info">
     <h1><?php echo $product->getName(); ?></h1>
     <dl>
         <dt>产地</dt>
         <dd>
-            <a href="<?php echo $this->url('product-front-filter', array('filter-name' => 'country', 'filter-value'=> $product->getCountry()));?>" >
-                <?php echo $product->getCountry();?>
+            <a href="<?php echo $this->url('product-front-filter', array('filter-name' => 'country', 'filter-value'=> $country));?>" >
+                <?php echo $country;?>
             </a>
         </dd>
         <dt>主要材质</dt>

@@ -58,6 +58,7 @@ return array(
                 array('route' => 'sub-category', 'roles' => array('guest', 'user')),
                 array('route' => 'country', 'roles' => array('guest', 'user')),
                 array('route' => 'country-list', 'roles' => array('guest', 'user')),
+                array('route' => 'front-category', 'roles' => array('guest', 'user'))
             ),
         ),
     ),

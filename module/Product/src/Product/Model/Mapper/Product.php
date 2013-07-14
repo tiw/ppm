@@ -2,6 +2,7 @@
 
 namespace Product\Model\Mapper;
 
+use Category\Model\Mapper\SubCategory;
 use Tiddr\Mapper\Base;
 use Zend\Db\ResultSet\HydratingResultSet;
 use Zend\Db\Sql\Where;
@@ -17,6 +18,22 @@ class Product extends Base
 {
 
     protected $tableName = 'product';
+
+    /**
+     * @var SubCategory
+     */
+    protected $subCategoryMapper;
+
+
+    public function setSubCategoryMapper(SubCategory $subCategoryMapper)
+    {
+        $this->subCategoryMapper = $subCategoryMapper;
+    }
+
+    public function getSubCategoryMapper()
+    {
+        return $this->subCategoryMapper;
+    }
 
     public function fetchAll($select = null)
     {
@@ -44,6 +61,18 @@ class Product extends Base
             array('sub_category_name' => 'name')
         )->where(['c.name' => $subCategoryName]);
         return $this->select($select);
+    }
+
+    public function findProductByCategory($categoryId)
+    {
+        // find out all sub categories in category
+        $subcategories = $this->getSubCategoryMapper()->getSubCategories($categoryId);
+        $subCategoryIds = array();
+        foreach($subcategories as $subCategory) {
+            $subCategoryIds[] = $subCategory->getId();
+        }
+        // find all products in the categories
+        return $this->select($this->getSelect()->where(array('sub_category_id' => $subCategoryIds)));
     }
 
     public function getProductByBetweenFilter($filterName, $minValue, $maxValue)

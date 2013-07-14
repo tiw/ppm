@@ -96,6 +96,7 @@ class Module extends AbstractModule
                     $mapper->setDbAdapter($sm->get('Zend\Db\Adapter\Adapter'));
                     $mapper->setEntityPrototype(new Product());
                     $mapper->setHydrator(new ProductHydrator());
+                    $mapper->setSubCategorymapper($sm->get('Category\Model\Mapper\SubCategory'));
                     return $mapper;
                 },
                 'Product\Model\Mapper\Image' => function($sm) {

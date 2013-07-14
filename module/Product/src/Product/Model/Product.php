@@ -3,6 +3,7 @@ namespace Product\Model;
 /*
  *
  */
+use Country\Model\Mapper\Country;
 
 /**
  * Description of Product
@@ -125,6 +126,18 @@ class Product
     protected $createdAt;
 
 
+    protected $country;
+
+    public function readCountryName()
+    {
+        return $this->country;
+    }
+
+    public function writeCountryName($country)
+    {
+        $this->country = $country;
+        return $this;
+    }
 
     public function getCountryId()
     {

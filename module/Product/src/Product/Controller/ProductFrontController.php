@@ -70,6 +70,19 @@ class ProductFrontController extends AbstractActionController
         return $this->productMapper;
     }
 
+
+    public function filterByCategoryAction()
+    {
+        $this->setLayout();
+        $categoryId = $this->params()->fromRoute('id', '1');
+        $products = $this->getProductMapper()->findProductByCategory($categoryId);
+        return array(
+            'products' => $products,
+            'imageMapper' => $this->getProductImageMapper(),
+            'personMapper' => $this->getPersonMapper()
+        );
+    }
+
     public function filterAction()
     {
         $logoMap = array(
@@ -93,6 +106,9 @@ class ProductFrontController extends AbstractActionController
         } else {
             if ($filterName === 'country') {
                 $title = $filterValue;
+                $filterName = 'country_id';
+                $filterValue = $this->getServiceLocator()
+                    ->get('Country\Model\Mapper\Country')->getIdByName($filterValue)->getName();
             } else if ($filterName === 'material') {
                 $title = $filterValue;
             }
@@ -121,7 +137,9 @@ class ProductFrontController extends AbstractActionController
         }
         $images = $this->getProductImageMapper()->findByProduct($id);
         $firstImage = $this->getProductImageMapper()->getFirstImage($id);
+        $country = $this->getServiceLocator()->get('Country\Model\Mapper\Country')->findById($product->getCountryId());
         return array(
+            'country' => $country->getName(),
             'product' => $product,
             'images' => $images,
             'firstImage' => $firstImage,

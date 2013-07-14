@@ -138,6 +138,16 @@ return array(
                 )
 
             ),
+            'front-category' => array(
+                'type' => 'segment',
+                'options' => array(
+                    'route' => '/products/category/:id',
+                    'defaults' => array(
+                        'controller' => '\Product\Controller\ProductFront',
+                        'action' => 'filterByCategory'
+                    )
+                )
+            ),
             'product-omament' => array(
                 'type' => 'segment',
                 'options' => array(
